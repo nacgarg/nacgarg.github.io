@@ -8,6 +8,7 @@
    body {
    	opacity:0;
    }
+   body { padding-top: 0px; }
    #music{
    	padding:10%;
    	background-image:url("http://www.mrwallpaper.com/wallpapers/music-notes-1920x1200.jpg");
@@ -28,6 +29,7 @@
   </head>
 
   <body>
+  <header>
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -64,6 +66,7 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+</header>
 <section id="top">
 <div class="jumbotron">
     <div class="container">
@@ -106,7 +109,6 @@
     </div>
       </section>
     </div>
-   <button id="thing">
 
 
 
@@ -120,9 +122,31 @@ $( document ).ready(function() {
     opacity: 1,
     left: "-=50",
   }, 1500, function() {
-    console.log("hi")
+    console.log("hi");
+    $( "body" ).css("opacity:1");
+    $( "body" ).slideDown(9000, function() {console.log("sdhfksjdh")});
   });
+
 });
+$(window).scroll(function() {
+  var scrollTop = $(window).scrollTop();
+  if ( scrollTop > $( "#music" ).offset().top ) { 
+    console.log("skjdhfksdhfksdhfiiiiiii123");
+     $( "body" ).slideDown(9000, function() {console.log("sdhfksjdh")});
+    var counter=1;
+
+
+};
+function checkScroll() {
+	if (counter===1){
+    $( "body" ).slideDown(9001, function() {console.log("sdhfksjdh")});
+  counter=0;
+	}
+
+	setInterval(checkScroll, 20)
+}
+});
+
    </script>
   </body>
 </html>
