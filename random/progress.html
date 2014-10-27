@@ -1,0 +1,43 @@
+
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script>
+	
+
+
+function updateProgress(percentage){
+    if(percentage > 98) {
+     percentage = 96;}
+
+    $(' #progressBar ').css('width', percentage+'%');
+}
+
+
+
+
+var i = 0;
+
+function stuff() {
+		i=i+1;
+		updateProgress(i);	
+	}
+
+$( document ).ready(function() {
+	
+	setInterval("stuff()", 10);
+});
+
+
+</script>
+</head>
+<body>
+<div  class="progress progress-striped active">
+    <div id="progressBar" class="progress-bar" style="width: 0%;">
+        <span class="sr-only">60% Complete</span>
+    </div>
+</div>
+</body>
+</html>
