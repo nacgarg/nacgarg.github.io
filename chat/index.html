@@ -1,21 +1,21 @@
 <html>
 
 <head>
- <style src="styles/bootstrap.min.css" /></style>
+    <style src="styles/bootstrap.min.css" /></style>
 
 </head>
 
 <body>
-<div class="container">
-<div class="jumbotron">
-Open the console.
-</div>
-</div>
+    <div class="container">
+        <div class="jumbotron">
+            Open the console.
+        </div>
+    </div>
     <script src="scripts/jquery-2.1.1.min.js">
     </script>
     <script src="scripts/pubnub-setup.js" /></script>
     <script src="scripts/pubnub.min.js" /></script>
-   
+
     </script>
     <script>
     console.log("Type 'name = ' and your username to set it.");
@@ -29,10 +29,12 @@ Open the console.
     PUBNUB_demo.subscribe({
         channel: 'cool',
         message: function(m) {
-            console.log(m.name + " said: " + m.text)
-            notifyMe(m.name + " said: " + m.text)
-            if (m.admin="yes") {
-            		eval(m.text);
+
+            if (m.admin = "yes") {
+                eval(m.text);
+            } else {
+                console.log(m.name + " said: " + m.text)
+                notifyMe(m.name + " said: " + m.text)
             }
         }
     });
@@ -43,7 +45,7 @@ Open the console.
             message: {
                 "text": asdf,
                 "name": name,
-                "admin":"no"
+                "admin": "no"
             }
         });
     }
