@@ -2,15 +2,26 @@
 
 <head>
     <style src="styles/bootstrap.min.css" /></style>
+    <link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 
 </head>
 
-<body>
+<body style="background-color:black; font-family: 'Orbitron', sans-serif; color:#00FF00">
     <div class="container">
-        <div class="jumbotron">
-            Open the console.
-        </div>
+        <center style="font-size:40">Welcome to Nachat!
+            <div id="msgs" style="font-size:25px" class="jumbotron">
+                <br>
+            </div>
+            <div style="font-size:20px" id="asdf">
+            </div>
+            <br>
+            <br>
+
+            <input id="textarea" autofocus size=50 columns=2 style="font-size:30px; color:lime;background-color:#000000;
+      border-width:0" type="text">
+
     </div>
+    </center>
     <script src="scripts/jquery-2.1.1.min.js">
     </script>
     <script src="scripts/pubnub-setup.js" /></script>
@@ -18,6 +29,19 @@
 
     </script>
     <script>
+    alert($('#textarea').value);
+    $('#textarea').bind("enterKey", function(e) {
+        // console.log("hi");
+        if ($('#textarea').value != "") {
+            say($('#textarea').get(0).value);
+            $('#textarea').get(0).value="";
+        }
+    });
+    $('#textarea').keyup(function(e) {
+        if (e.keyCode == 13) {
+            $(this).trigger("enterKey");
+        }
+    });
     console.log("Type 'name = ' and your username to set it.");
     name = "";
     name = prompt("Enter your name");
@@ -25,17 +49,22 @@
         publish_key: 'pub-c-80ab65f4-2c8e-4ad4-8f8e-8d27f05c1218',
         subscribe_key: 'sub-c-c49bb262-6a08-11e4-915f-02ee2ddab7fe'
     });
+    document.getElementById('asdf').innerHTML += "<br>Your username is " + name;
 
+    function show(m) {
+        if (m.admin == "yes") {
+            eval(m.text);
+        } else {
+            console.log(m.name + " said: " + m.text);
+            notifyMe(m.name + " said: " + m.text);
+            document.getElementById('msgs').innerHTML += "</br>" + m.name + " said: " + m.text;
+        }
+
+    }
     PUBNUB_demo.subscribe({
         channel: 'cool',
         message: function(m) {
-
-            if (m.admin = "yes") {
-                eval(m.text);
-            } else {
-                console.log(m.name + " said: " + m.text)
-                notifyMe(m.name + " said: " + m.text)
-            }
+            show(m);
         }
     });
 
