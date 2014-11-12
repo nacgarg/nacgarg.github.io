@@ -29,11 +29,13 @@
 
     </script>
     <script>
+    var usercolor=getRandomColor();
+    
     $('#textarea').bind("enterKey", function(e) {
         // console.log("hi");
         if ($('#textarea').get(0).value != "") {
             say($('#textarea').get(0).value);
-            $('#textarea').get(0).value="";
+            $('#textarea').get(0).value = "";
         }
     });
     $('#textarea').keyup(function(e) {
@@ -78,6 +80,20 @@
         });
     }
 
+    function clear() {
+        setTimeout(notification.close(), 2000);
+    }
+
+    function getRandomColor() {
+        var letters = 'F123456789ABCDEF'.split('');
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+    notification.onshow = clear();
+
     function notifyMe(stuff) {
         if (!Notification) {
             alert('Please us a modern version of Chrome, Firefox, Opera or Firefox.');
@@ -87,8 +103,10 @@
         if (Notification.permission !== "granted")
             Notification.requestPermission();
 
+
         var notification = new Notification('Notification title', {
             icon: 'icon.png',
+            title: 'You got a new message on NaChat!!!'
             body: stuff,
         });
 
