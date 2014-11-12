@@ -58,7 +58,7 @@
         } else {
             console.log(m.name + " said: " + m.text);
             notifyMe(m.name + " said: " + m.text);
-            document.getElementById('msgs').innerHTML += "</br></br><font color='" + usercolor+"'>" + m.name + "</font> said: " + m.text;
+            document.getElementById('msgs').innerHTML += "</br></br><font color='" + m.color+"'>" + m.name + "</font> said: " + m.text;
         }
 
     }
@@ -75,7 +75,8 @@
             message: {
                 "text": asdf,
                 "name": name,
-                "admin": "no"
+                "admin": "no",
+                "color": usercolor
             }
         });
     }
