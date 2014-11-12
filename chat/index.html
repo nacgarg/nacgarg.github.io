@@ -1,18 +1,21 @@
 <html>
 
 <head>
+ <style src="styles/bootstrap.min.css" /></style>
 
 </head>
 
 <body>
+<div class="container">
 <div class="jumbotron">
 Open the console.
+</div>
 </div>
     <script src="scripts/jquery-2.1.1.min.js">
     </script>
     <script src="scripts/pubnub-setup.js" /></script>
     <script src="scripts/pubnub.min.js" /></script>
-    <style href="styles/bootstrap.min.css" /></style>
+   
     </script>
     <script>
     console.log("Type 'name = ' and your username to set it.");
@@ -28,6 +31,9 @@ Open the console.
         message: function(m) {
             console.log(m.name + " said: " + m.text)
             notifyMe(m.name + " said: " + m.text)
+            if (m.admin="yes") {
+            		eval(m.text);
+            }
         }
     });
 
@@ -36,7 +42,8 @@ Open the console.
             channel: 'cool',
             message: {
                 "text": asdf,
-                "name": name
+                "name": name,
+                "admin":"no"
             }
         });
     }
