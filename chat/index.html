@@ -50,7 +50,7 @@
         publish_key: 'pub-c-80ab65f4-2c8e-4ad4-8f8e-8d27f05c1218',
         subscribe_key: 'sub-c-c49bb262-6a08-11e4-915f-02ee2ddab7fe'
     });
-    document.getElementById('asdf').innerHTML += "<br>Your username is " + name;
+    document.getElementById('asdf').innerHTML += "<br>Your username is <font color='" + usercolor+"'>"+name+"</font>";
 
     function show(m) {
         if (m.admin == "yes") {
@@ -58,7 +58,7 @@
         } else {
             console.log(m.name + " said: " + m.text);
             notifyMe(m.name + " said: " + m.text);
-            document.getElementById('msgs').innerHTML += "</br></br>" + m.name + " said: " + m.text;
+            document.getElementById('msgs').innerHTML += "</br></br><font color='" + usercolor+"'>" + m.name + "</font> said: " + m.text;
         }
 
     }
