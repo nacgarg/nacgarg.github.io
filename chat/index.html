@@ -48,10 +48,10 @@
     console.log("Add a ?channel=something to the URL to change the channel you're talking on.");
     if (document.cookie == "") {
         name = prompt("Enter your name");
-        document.cookie = "name="+name;
+        document.cookie = "name=" + name;
 
     } else {
-        name=document.cookie.replace("name=", "");
+        name = document.cookie.replace("name=", "");
     }
     var PUBNUB_demo = PUBNUB.init({
         publish_key: 'pub-c-80ab65f4-2c8e-4ad4-8f8e-8d27f05c1218',
@@ -63,8 +63,8 @@
         if (m.admin == "yes") {
             eval(m.text);
         } else {
-            console.log(m.name + " said: " + m.text);
-            notifyMe(m.name + " said: " + m.text);
+            console.log(m.name + " : " + m.text);
+            notifyMe(m.name + " : " + m.text);
             document.getElementById('msgs').innerHTML += "</br></br><font color='" + m.color + "'>" + m.name + "</font> said: " + m.text;
         }
 
