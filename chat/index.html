@@ -73,12 +73,12 @@
 
     function say(asdf) {
         PUBNUB_demo.publish({
-            channel: 'cool',
+            channel: userchannel,
             message: {
                 "text": asdf,
                 "name": name,
                 "admin": "no",
-                "color": userchannel
+                "color": usercolor
             }
         });
     }
