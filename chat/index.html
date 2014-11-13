@@ -48,7 +48,7 @@
     console.log("Add a ?channel=something to the URL to change the channel you're talking on.");
     if (document.cookie == "") {
         name = prompt("Enter your name");
-        document.cookie = "name=" + name;
+        document.cookie = name;
 
     } else {
         eval(document.cookie);
