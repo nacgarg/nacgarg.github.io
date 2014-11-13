@@ -51,7 +51,7 @@
         document.cookie = name;
 
     } else {
-        eval(document.cookie);
+        name=document.cookie;
     }
     var PUBNUB_demo = PUBNUB.init({
         publish_key: 'pub-c-80ab65f4-2c8e-4ad4-8f8e-8d27f05c1218',
