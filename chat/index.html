@@ -181,11 +181,11 @@
                                 });
 
                                 function clear() {
-                                    setTimeout(notification.close(), 2000);
+                                    setTimeout(notification.close(), 5000);
                                 }
                                 notification.onshow = function() {
                                     clear();
-                                    console.log("hi");
+                                   // console.log("hi");
                                 }
 
                                 notification.onclick = function() {
