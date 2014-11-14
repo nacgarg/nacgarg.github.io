@@ -93,59 +93,104 @@
             show(m);
         }
     });
-
-    function say(asdf) {
-        PUBNUB_demo.publish({
-            channel: userchannel,
-            message: {
-                "text": asdf,
-                "name": name,
-                "admin": "no",
-                "color": usercolor
-            }
-        });
-    }
-
-    function clear() {
-        setTimeout(notification.close(), 2000);
-    }
-
-    function getRandomColor() {
-        var letters = 'F123456789ABCDEF'.split('');
-        var color = '#';
-        for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
+    ping('here');
+    var online = {};
+    PUBNUB_demo.subscribe({
+                channel: 'P1NG',
+                message: function(m) {
+                        if (m.ping == 'here') {
+                            online.push(m.name);
+                            setInterval(ping('ok'))
 
 
 
+                        }
+                        if (m.ping == 'ok') {
+                            setTimeout(function() {
+                                PUBNUB_demo.subscribe({
+                                        channel: 'P1NG',
+                                        message: function(m) {
+                                            if (m.ping == 'ok') {
+                                                online.push(m.name);
+                                                setInterval(ping('ok'))
 
-    function notifyMe(stuff) {
-        if (!Notification) {
-            alert('Please us a modern version of Chrome, Firefox, Opera or Firefox.');
-            return;
-        }
+                                                if (m.ping != 'ok') {
 
-        if (Notification.permission !== "granted")
-            Notification.requestPermission();
+                                                }
+
+                                            }, 2000)
+                                    }
+                                }
+                            });
+
+                            function say(asdf) {
+                                PUBNUB_demo.publish({
+                                    channel: userchannel,
+                                    message: {
+                                        "text": asdf,
+                                        "name": name,
+                                        "admin": "no",
+                                        "color": usercolor
+                                    }
+                                });
+                            }
+
+                            function ping(asdf) {
+                                PUBNUB_demo.publish({
+                                    channel: 'P1NG',
+                                    message: {
+                                        "ping": asdf,
+                                        "name": name,
+                                    }
+                                });
+                            }
+
+                            function clear() {
+                                setTimeout(notification.close(), 2000);
+                            }
+
+                            function getRandomColor() {
+                                var letters = 'F123456789ABCDEF'.split('');
+                                var color = '#';
+                                for (var i = 0; i < 6; i++) {
+                                    color += letters[Math.floor(Math.random() * 16)];
+                                }
+                                return color;
+                            }
 
 
 
-        var notification = new Notification('New Message on NaChat!!!', {
-            icon: 'icon.png',
-            body: stuff,
-        });
-        notification.onshow = function() {
-            clear();
-            console.log("hi");
-        }
 
-        notification.onclick = function() {
-            window.open("http://ngargi.me/chat");
-        }
-    }
+                            function notifyMe(stuff) {
+                                if (!Notification) {
+                                    alert('Please us a modern version of Chrome, Firefox, Opera or Firefox.');
+                                    return;
+                                }
+
+                                
+
+                                if (Notification.permission !== "granted")
+                                    Notification.requestPermission();
+
+
+
+                                var notification = new Notification('New Message on NaChat!!!', {
+                                    icon: 'icon.png',
+                                    body: stuff,
+                                });
+
+                                function clear() {
+                                    setTimeout(notification.close(), 2000);
+                                }
+                                notification.onshow = function() {
+                                    clear();
+                                    console.log("hi");
+                                }
+
+                                notification.onclick = function() {
+                                    window.open("http://ngargi.me/chat");
+                                }
+                            }
     </script>
 </body>
 
