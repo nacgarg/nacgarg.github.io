@@ -181,7 +181,7 @@
                                 });
 
                                 function clear() {
-                                    setTimeout(notification.close(), 10000);
+                                    setTimeout(function(){notification.close()}, 3000);
                                 }
                                 notification.onshow = function() {
                                     clear();
