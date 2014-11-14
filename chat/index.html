@@ -93,8 +93,9 @@
             show(m);
         }
     });
-    ping('here');
+    //ping('here');
     var online = {};
+     /* 
     PUBNUB_demo.subscribe({
                 channel: 'P1NG',
                 message: function(m) {
@@ -105,7 +106,7 @@
 
 
                         }
-                       /* if (m.ping == 'ok') {
+                      if (m.ping == 'ok') {
                             setTimeout(function() {
                                 PUBNUB_demo.subscribe({
                                         channel: 'P1NG',
