@@ -22,14 +22,11 @@
 
     </div>
     </center>
-    <div align='right' style='position:absolute;bottom:0'>
-    <a href="location.html">Try the location-based chat!</a>
-    </div>
     <script src="scripts/jquery-2.1.1.min.js">
     </script>
     <script src="scripts/pubnub-setup.js" /></script>
     <script src="scripts/pubnub.min.js" /></script>
-
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     </script>
     <script>
     var usercolor = getRandomColor();
@@ -98,7 +95,7 @@
     });
     //ping('here');
     var online = {};
-     /* 
+    /* 
     PUBNUB_demo.subscribe({
                 channel: 'P1NG',
                 message: function(m) {
@@ -127,74 +124,126 @@
                                 }
                             });*/
 
-                            function say(asdf) {
-                                PUBNUB_demo.publish({
-                                    channel: userchannel,
-                                    message: {
-                                        "text": asdf,
-                                        "name": name,
-                                        "admin": "no",
-                                        "color": usercolor
-                                    }
-                                });
-                            }
+    function say(asdf) {
+        PUBNUB_demo.publish({
+            channel: userchannel,
+            message: {
+                "text": asdf,
+                "name": name,
+                "admin": "no",
+                "color": usercolor
+            }
+        });
+    }
 
-                            function ping(asdf) {
-                                PUBNUB_demo.publish({
-                                    channel: 'P1NG',
-                                    message: {
-                                        "ping": asdf,
-                                        "name": name,
-                                    }
-                                });
-                            }
+    function ping(asdf) {
+        PUBNUB_demo.publish({
+            channel: 'P1NG',
+            message: {
+                "ping": asdf,
+                "name": name,
+            }
+        });
+    }
 
-                            function clear() {
-                                setTimeout(notification.close(), 2000);
-                            }
+    function clear() {
+        setTimeout(notification.close(), 2000);
+    }
 
-                            function getRandomColor() {
-                                var letters = 'F123456789ABCDEF'.split('');
-                                var color = '#';
-                                for (var i = 0; i < 6; i++) {
-                                    color += letters[Math.floor(Math.random() * 16)];
-                                }
-                                return color;
-                            }
-
-
-
-
-                            function notifyMe(stuff) {
-                                if (!Notification) {
-                                    alert('Please us a modern version of Chrome, Firefox, Opera or Firefox.');
-                                    return;
-                                }
-
-                                
-
-                                if (Notification.permission !== "granted")
-                                    Notification.requestPermission();
+    function getRandomColor() {
+        var letters = 'F123456789ABCDEF'.split('');
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
 
 
 
-                                var notification = new Notification('New Message on NaChat!!!', {
-                                    icon: 'icon.png',
-                                    body: stuff,
-                                });
 
-                                function clear() {
-                                    setTimeout(function(){notification.close()}, 3000);
-                                }
-                                notification.onshow = function() {
-                                    clear();
-                                   // console.log("hi");
-                                }
+    function notifyMe(stuff) {
+        if (!Notification) {
+            alert('Please us a modern version of Chrome, Firefox, Opera or Firefox.');
+            return;
+        }
 
-                                notification.onclick = function() {
-                                    window.open("http://ngargi.me/chat");
-                                }
-                            }
+
+
+        if (Notification.permission !== "granted")
+            Notification.requestPermission();
+
+
+
+        var notification = new Notification('New Message on NaChat!!!', {
+            icon: 'icon.png',
+            body: stuff,
+        });
+
+        function clear() {
+            setTimeout(function() {
+                notification.close()
+            }, 3000);
+        }
+        notification.onshow = function() {
+            clear();
+            // console.log("hi");
+        }
+
+        notification.onclick = function() {
+            window.open("http://ngargi.me/chat");
+        }
+    }
+    var latitude = "";
+    var longitude = "";
+    var codedlocation = "";
+    var geocoder = new google.maps.Geocoder();
+
+    function codeLatLng(lat, lng) {
+        var latlng = new google.maps.LatLng(lat, lng);
+        geocoder.geocode({
+            'latLng': latlng
+        }, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[1]) {
+                    codedlocation = latlng;
+                } else {
+                    alert('ERROR! It\'s your fault!');
+                }
+            } else {
+                alert('Geocoder failed due to: ' + status);
+            }
+        });
+    }
+
+    function geoFindMe() {
+        if (!navigator.geolocation) {
+            alert("Location isn't supported in your browser. BTW don't use Internet Explorer.")
+            return;
+        }
+
+        function success(position) {
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+
+            console.log(latitude + ', ' + longitude);
+            codeLatLng(latitude, longitude);
+
+        }
+
+        function error() {
+            alert("Unable to retrieve your location");
+        };
+
+
+        navigator.geolocation.getCurrentPosition(success, error);
+    }
+
+
+
+    geoFindMe();
+
+    console.log(codedlocation);
     </script>
 </body>
 
