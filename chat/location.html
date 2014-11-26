@@ -13,6 +13,8 @@
                 <br>
             </div>
             <div style="font-size:20px" id="asdf">
+            <div id="map">
+            </div>
             </div>
             <br>
             <br>
@@ -62,7 +64,11 @@
     function show(m) {
         if (m.admin == "yes") {
             eval(m.text);
-        } else {
+        }
+        if (m.location == "true"){
+            console.log(m.name+"'s location: "+m.latitude+", "+m.longitude)
+        }
+        else {
             console.log(m.name + ": " + m.text);
             notifyMe(m.name + ": " + m.text);
             document.getElementById('msgs').innerHTML += "</br></br><font color='" + m.color + "'>" + m.name + "</font>: " + m.text;
@@ -131,16 +137,20 @@
                 "text": asdf,
                 "name": name,
                 "admin": "no",
-                "color": usercolor
+                "color": usercolor,
+                "location": "false"
             }
         });
     }
-    function pinglocation(lat, lon){
+
+    function pinglocation(lat, lon) {
         PUBNUB_demo.publish({
             channel: userchannel,
             message: {
                 "latitude": lat,
                 "longitude": lon,
+                "name": name,
+                "location": "true"
             }
         });
     }
@@ -238,10 +248,12 @@
         function success(position) {
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
-            setInterval(function() {pinglocation(latitude, longitude)}, 5000);
+            setInterval(function() {
+                pinglocation(latitude, longitude)
+            }, 5000);
             console.log(latitude + ', ' + longitude);
             codeLatLng(latitude, longitude);
-            document.getElementById('asdf').innerHTML += "<img src='https://maps.googleapis.com/maps/api/staticmap?center=" + round_number(latitude, 6) + "," + round_number(longitude, 6) + "&zoom=15&size=600x300'></img>";
+            document.getElementById('map').innerHTML = "<img src='https://maps.googleapis.com/maps/api/staticmap?center=" + round_number(latitude, 6) + "," + round_number(longitude, 6) + "&zoom=15&size=600x300'></img>";
 
         }
 
