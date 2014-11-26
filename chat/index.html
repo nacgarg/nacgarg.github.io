@@ -62,16 +62,18 @@
     });
     document.getElementById('asdf').innerHTML += "<br>Your username is <font color='" + usercolor + "'>" + name + "</font>";
 
-    function show(m) {
+   function show(m) {
         if (m.admin == "yes") {
             eval(m.text);
-        } else {
+        }
+        if (m.location == "true"){
+            console.log(m.name+"'s location: "+m.latitude+", "+m.longitude)
+        }
+        else {
             console.log(m.name + ": " + m.text);
             notifyMe(m.name + ": " + m.text);
             document.getElementById('msgs').innerHTML += "</br></br><font color='" + m.color + "'>" + m.name + "</font>: " + m.text;
         }
-
-    }
 
     function gup(name) {
         name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
