@@ -216,6 +216,10 @@
         });
     }
 
+    function round_number(num, dec) {
+        return Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
+    }
+
     function geoFindMe() {
         if (!navigator.geolocation) {
             alert("Location isn't supported in your browser. BTW don't use Internet Explorer.")
@@ -228,7 +232,7 @@
 
             console.log(latitude + ', ' + longitude);
             codeLatLng(latitude, longitude);
-            document.getElementById('asdf').innerHTML += "<img src='https://maps.googleapis.com/maps/api/staticmap?center="+latitude+","+longitude+"zoom=13&size=600x300'></img>";
+            document.getElementById('asdf').innerHTML += "<img src='https://maps.googleapis.com/maps/api/staticmap?center=" + round_number(latitude, 6) + "," + round_number(longitude, 6) + "zoom=13&size=600x300'></img>";
 
         }
 
@@ -245,7 +249,6 @@
     geoFindMe();
 
     console.log(codedlocation);
-   
     </script>
 </body>
 
