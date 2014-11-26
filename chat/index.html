@@ -23,7 +23,7 @@
     </div>
     </center>
     <div align='right' style='position:absolute;bottom:0'>
-    <a href="location.html">Try the location-based chat!</a>
+        <a href="location.html">Try the location-based chat!</a>
     </div>
     <script src="scripts/jquery-2.1.1.min.js">
     </script>
@@ -62,18 +62,18 @@
     });
     document.getElementById('asdf').innerHTML += "<br>Your username is <font color='" + usercolor + "'>" + name + "</font>";
 
-   function show(m) {
+    function show(m) {
         if (m.admin == "yes") {
             eval(m.text);
         }
-        if (m.location == "true"){
-            console.log(m.name+"'s location: "+m.latitude+", "+m.longitude)
-        }
-        else {
+        if (m.location == "true") {
+            console.log(m.name + "'s location: " + m.latitude + ", " + m.longitude)
+        } else {
             console.log(m.name + ": " + m.text);
             notifyMe(m.name + ": " + m.text);
             document.getElementById('msgs').innerHTML += "</br></br><font color='" + m.color + "'>" + m.name + "</font>: " + m.text;
         }
+    }
 
     function gup(name) {
         name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -100,7 +100,7 @@
     });
     //ping('here');
     var online = {};
-     /* 
+    /* 
     PUBNUB_demo.subscribe({
                 channel: 'P1NG',
                 message: function(m) {
@@ -129,74 +129,76 @@
                                 }
                             });*/
 
-                            function say(asdf) {
-                                PUBNUB_demo.publish({
-                                    channel: userchannel,
-                                    message: {
-                                        "text": asdf,
-                                        "name": name,
-                                        "admin": "no",
-                                        "color": usercolor
-                                    }
-                                });
-                            }
+    function say(asdf) {
+        PUBNUB_demo.publish({
+            channel: userchannel,
+            message: {
+                "text": asdf,
+                "name": name,
+                "admin": "no",
+                "color": usercolor
+            }
+        });
+    }
 
-                            function ping(asdf) {
-                                PUBNUB_demo.publish({
-                                    channel: 'P1NG',
-                                    message: {
-                                        "ping": asdf,
-                                        "name": name,
-                                    }
-                                });
-                            }
+    function ping(asdf) {
+        PUBNUB_demo.publish({
+            channel: 'P1NG',
+            message: {
+                "ping": asdf,
+                "name": name,
+            }
+        });
+    }
 
-                            function clear() {
-                                setTimeout(notification.close(), 2000);
-                            }
+    function clear() {
+        setTimeout(notification.close(), 2000);
+    }
 
-                            function getRandomColor() {
-                                var letters = 'F123456789ABCDEF'.split('');
-                                var color = '#';
-                                for (var i = 0; i < 6; i++) {
-                                    color += letters[Math.floor(Math.random() * 16)];
-                                }
-                                return color;
-                            }
-
-
-
-
-                            function notifyMe(stuff) {
-                                if (!Notification) {
-                                    alert('Please us a modern version of Chrome, Firefox, Opera or Firefox.');
-                                    return;
-                                }
-
-                                
-
-                                if (Notification.permission !== "granted")
-                                    Notification.requestPermission();
+    function getRandomColor() {
+        var letters = 'F123456789ABCDEF'.split('');
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
 
 
 
-                                var notification = new Notification('New Message on NaChat!!!', {
-                                    icon: 'icon.png',
-                                    body: stuff,
-                                });
 
-                                function clear() {
-                                    setTimeout(function(){notification.close()}, 3000);
-                                }
-                                notification.onshow = function() {
-                                    clear();
-                                   // console.log("hi");
-                                }
+    function notifyMe(stuff) {
+        if (!Notification) {
+            alert('Please us a modern version of Chrome, Firefox, Opera or Firefox.');
+            return;
+        }
 
-                                notification.onclick = function() {
-                                    window.open("http://ngargi.me/chat");
-                                }
-                            }
+
+
+        if (Notification.permission !== "granted")
+            Notification.requestPermission();
+
+
+
+        var notification = new Notification('New Message on NaChat!!!', {
+            icon: 'icon.png',
+            body: stuff,
+        });
+
+        function clear() {
+            setTimeout(function() {
+                notification.close()
+            }, 3000);
+        }
+        notification.onshow = function() {
+            clear();
+            // console.log("hi");
+        }
+
+        notification.onclick = function() {
+            window.open("http://ngargi.me/chat");
+        }
+    }
     </script>
 </body>
 
