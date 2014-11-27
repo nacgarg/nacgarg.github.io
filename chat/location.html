@@ -85,7 +85,7 @@
                 console.log(m.name + "'s location: " + m.latitude + ", " + m.longitude);
                 pingnum.online.push(m.name);
                 $.each(pingnum.online, function(i, el) {
-                    if ($.inArray(el, uniqueNames) === -1) pingnum.online.push(el);
+                    if ($.inArray(el, pingnum.online) === -1) pingnum.online.push(el);
                 });
             } else {
                 console.log(m.name + ": " + m.text);
