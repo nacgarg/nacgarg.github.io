@@ -90,7 +90,7 @@
                 $.each(online.names, function(i, el) {
                     if ($.inArray(el, temparr) === -1) temparr.push(el);
                 });
-                pingnum.online = temparr;
+                online.names = temparr;
             } else {
                 console.log(m.name + ": " + m.text);
                 notifyMe(m.name + ": " + m.text);
