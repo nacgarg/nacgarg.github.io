@@ -97,12 +97,11 @@
                     if ($.inArray(el, temparr) === -1) temparr.push(el);
                 });
                 onlinenames = temparr;
+            } else {
+                console.log(m.name + ": " + m.text);
+                notifyMe(m.name + ": " + m.text);
+                document.getElementById('msgs').innerHTML += "</br></br><font color='" + m.color + "'>" + m.name + "</font>: " + m.text;
             }
-        } else {
-            console.log(m.name + ": " + m.text);
-            notifyMe(m.name + ": " + m.text);
-            document.getElementById('msgs').innerHTML += "</br></br><font color='" + m.color + "'>" + m.name + "</font>: " + m.text;
-        }
 
         }
 
