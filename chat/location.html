@@ -44,9 +44,7 @@
         </center>
 
         <script>
-        var online = {
-            "names"= [name]
-        };
+        var online;
         var usercolor = getRandomColor();
 
         $('#textarea').bind("enterKey", function(e) {
@@ -77,14 +75,13 @@
         });
         document.getElementById('asdf').innerHTML += "<br>Your username is <font color='" + usercolor + "'>" + name + "</font><br><br>";
         var temparr;
-
+        online.names=[];
         function show(m) {
             if (m.admin == "yes") {
                 eval(m.text);
             }
             if (m.location == "true") {
                 console.log(m.name + "'s location: " + m.latitude + ", " + m.longitude);
-
                 online.names.push(m.name);
                 temparr = [];
                 $.each(online.names, function(i, el) {
