@@ -83,10 +83,14 @@
             }
             if (m.location == "true") {
                 console.log(m.name + "'s location: " + m.latitude + ", " + m.longitude);
-                pingnum.online.push(m.name);
+                if (m.name =! name) {
+                    pingnum.online.push(m.name);
+                }
+                var temparr = [];
                 $.each(pingnum.online, function(i, el) {
-                    if ($.inArray(el, pingnum.online) === -1) pingnum.online.push(el);
+                    if ($.inArray(el, temparr) === -1) temparr.push(el);
                 });
+                pingnum.online=temparr;
             } else {
                 console.log(m.name + ": " + m.text);
                 notifyMe(m.name + ": " + m.text);
