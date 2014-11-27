@@ -74,28 +74,25 @@
             subscribe_key: 'sub-c-c49bb262-6a08-11e4-915f-02ee2ddab7fe'
         });
         document.getElementById('asdf').innerHTML += "<br>Your username is <font color='" + usercolor + "'>" + name + "</font><br><br>";
-        var temparr=[];
+        var temparr = [];
         onlinenames = [];
-        var recordnames=[];
-        var namenum=0;
-        var namecount={};
+        var recordnames = [];
+
         function show(m) {
             if (m.admin == "yes") {
                 eval(m.text);
             }
-
+            if m.offline == "true" {
+                onlinenames.splice(onlinenames.indexOf(m.name), 1);
+            }
             if (m.location == "true") {
-                recordnames.push(m.name);
-                recordnames.forEach(function(i) { namecount[i] = (recordnames[i]||0)+1;  });
-                console.log(namecount);
                 console.log(m.name + "'s location: " + m.latitude + ", " + m.longitude);
                 onlinenames.push(m.name);
-               // temparr = [];
+                // temparr = [];
                 $.each(onlinenames, function(i, el) {
                     if ($.inArray(el, temparr) === -1) temparr.push(el);
 
                 });
-                namenum++;
                 onlinenames = temparr;
             } else {
                 console.log(m.name + ": " + m.text);
@@ -115,7 +112,15 @@
             else
                 return results[1];
         }
-
+        window.unload(function(){
+            PUBNUB_demo.publish({
+                channel: userchannel,
+                message: {
+                    "name": name,
+                    "offline": "true"
+                }
+            });
+        });
         if (gup('channel') == null) {
             var userchannel = "public";
         } else {
