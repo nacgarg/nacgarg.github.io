@@ -10,7 +10,6 @@
     </script>
     <script src="scripts/pubnub-setup.js" /></script>
     <script src="scripts/pubnub.min.js" /></script>
-
 </head>
 
 <body style="background-color:black; font-family: 'Orbitron', sans-serif; color:#00FF00">
@@ -29,8 +28,11 @@
 
 
         </center>
-        <ul id="onlinelist" style="float:right">
+        <div style="font-size:20px;float:right">
+        Online:
+        <ul id="onlinelist" style="list-style-type:none;">
         </ul>
+        </div>
     </div>
     <script>
     // var online = {"names":[123,123,123]};
@@ -75,10 +77,10 @@
             eval(m.text);
         } else if (m.onlinestatus == "offline") {
             onlinenames.splice(onlinenames.indexOf(m.name), 1);
-            updateOnlineList(m.color);
+            updateOnlineList();
         } else if (m.onlinestatus == "online") {
             onlinenames.push(m.name);
-            updateOnlineList(m.color);
+            updateOnlineList();
         } else if (m.location == "true") {
             console.log(m.name + "'s location: " + m.latitude + ", " + m.longitude);
         } else if (m.ping == "ping") {
@@ -88,7 +90,7 @@
                 if ($.inArray(el, temparr) === -1) temparr.push(el);
             });
             onlinenames = temparr;
-            updateOnlineList(m.color);
+            updateOnlineList();
         } else {
             console.log(m.name + ": " + m.text);
             notifyMe(m.name + ": " + m.text);
@@ -249,10 +251,10 @@
         return Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
     }
 
-   function updateOnlineList(color) {
+   function updateOnlineList() {
         var html = '';
         for (var i = 0; i < onlinenames.length; i++) {
-            html += '<li color='+color+'>' + onlinenames[i] + '</li>';
+            html += '<li>' + onlinenames[i] + '</li>';
         }
         var list = document.getElementById("onlinelist");
         list.innerHTML = html;
