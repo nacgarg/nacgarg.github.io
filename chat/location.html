@@ -88,7 +88,7 @@
             if (m.location == "true") {
                 console.log(m.name + "'s location: " + m.latitude + ", " + m.longitude);
                 onlinenames.push(m.name);
-                // temparr = [];
+                temparr = [];
                 $.each(onlinenames, function(i, el) {
                     if ($.inArray(el, temparr) === -1) temparr.push(el);
 
