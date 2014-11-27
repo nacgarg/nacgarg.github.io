@@ -112,7 +112,7 @@
             else
                 return results[1];
         }
-        $( window ).unload(function(){
+        window.onbeforeunload = function() {
             PUBNUB_demo.publish({
                 channel: userchannel,
                 message: {
@@ -120,7 +120,8 @@
                     "offline": "true"
                 }
             });
-        });
+            return null;
+        }
         if (gup('channel') == null) {
             var userchannel = "public";
         } else {
