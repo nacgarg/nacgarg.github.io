@@ -112,7 +112,7 @@
             else
                 return results[1];
         }
-        window.unload(function(){
+        $( window ).unload(function(){
             PUBNUB_demo.publish({
                 channel: userchannel,
                 message: {
