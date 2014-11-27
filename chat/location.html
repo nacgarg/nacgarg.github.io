@@ -46,6 +46,15 @@
         <script>
         // var online = {"names":[123,123,123]};
         var usercolor = getRandomColor();
+        $(document).ready(function() {
+            PUBNUB_demo.publish({
+                channel: userchannel,
+                message: {
+                    "name": name,
+                    "onlinestatus": "online"
+                }
+            });
+        });
 
         $('#textarea').bind("enterKey", function(e) {
             // console.log("hi");
@@ -82,18 +91,21 @@
             if (m.admin == "yes") {
                 eval(m.text);
             }
-            if (m.offline == "true") {
+            if (m.onlinestatus == "offline") {
                 onlinenames.splice(onlinenames.indexOf(m.name), 1);
+            }
+            if (m.onlinestatus == "online") {
+                onlinenames.push(m.name);
             }
             if (m.location == "true") {
                 console.log(m.name + "'s location: " + m.latitude + ", " + m.longitude);
-                onlinenames.push(m.name);
-                temparr = [];
-                $.each(onlinenames, function(i, el) {
-                    if ($.inArray(el, temparr) === -1) temparr.push(el);
+             //   onlinenames.push(m.name);
+             //   temparr = [];
+             //   $.each(onlinenames, function(i, el) {
+             //       if ($.inArray(el, temparr) === -1) temparr.push(el);
 
-                });
-                onlinenames = temparr;
+              //  });
+               // onlinenames = temparr;
             } else {
                 console.log(m.name + ": " + m.text);
                 notifyMe(m.name + ": " + m.text);
@@ -101,6 +113,7 @@
             }
 
         }
+
 
         function gup(name) {
             name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -117,7 +130,7 @@
                 channel: userchannel,
                 message: {
                     "name": name,
-                    "offline": "true"
+                    "onlinestatus": "offline"
                 }
             });
             return null;
@@ -314,7 +327,7 @@
             }
 
             function error() {
-               // alert("Unable to retrieve your location");
+                // alert("Unable to retrieve your location");
                 geoFindMe();
             };
 
