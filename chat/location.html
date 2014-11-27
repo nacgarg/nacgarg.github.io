@@ -90,17 +90,19 @@
                 onlinenames.push(m.name);
             } else if (m.location == "true") {
                 console.log(m.name + "'s location: " + m.latitude + ", " + m.longitude);
+            } else if (m.ping == "ping") {
                 onlinenames.push(m.name);
                 temparr = [];
                 $.each(onlinenames, function(i, el) {
                     if ($.inArray(el, temparr) === -1) temparr.push(el);
                 });
                 onlinenames = temparr;
-            } else {
-                console.log(m.name + ": " + m.text);
-                notifyMe(m.name + ": " + m.text);
-                document.getElementById('msgs').innerHTML += "</br></br><font color='" + m.color + "'>" + m.name + "</font>: " + m.text;
             }
+        } else {
+            console.log(m.name + ": " + m.text);
+            notifyMe(m.name + ": " + m.text);
+            document.getElementById('msgs').innerHTML += "</br></br><font color='" + m.color + "'>" + m.name + "</font>: " + m.text;
+        }
 
         }
 
@@ -193,15 +195,18 @@
             });
         }
 
-        function ping(asdf) {
+        function ping() {
             PUBNUB_demo.publish({
-                channel: 'P1NG',
+                channel: userchannel,
                 message: {
-                    "ping": asdf,
+                    "ping": "ping",
                     "name": name,
                 }
             });
         }
+        setInterval(function() {
+            ping()
+        }, 2000);
         PUBNUB_demo.publish({
             channel: userchannel,
             message: {
