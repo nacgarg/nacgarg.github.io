@@ -47,7 +47,7 @@
         // var online = {"names":[123,123,123]};
         var usercolor = getRandomColor();
         $(function() {
-            
+
         });
 
         $('#textarea').bind("enterKey", function(e) {
@@ -90,13 +90,12 @@
                 onlinenames.push(m.name);
             } else if (m.location == "true") {
                 console.log(m.name + "'s location: " + m.latitude + ", " + m.longitude);
-                //   onlinenames.push(m.name);
-                //   temparr = [];
-                //   $.each(onlinenames, function(i, el) {
-                //       if ($.inArray(el, temparr) === -1) temparr.push(el);
-
-                //  });
-                // onlinenames = temparr;
+                onlinenames.push(m.name);
+                temparr = [];
+                $.each(onlinenames, function(i, el) {
+                    if ($.inArray(el, temparr) === -1) temparr.push(el);
+                });
+                onlinenames = temparr;
             } else {
                 console.log(m.name + ": " + m.text);
                 notifyMe(m.name + ": " + m.text);
@@ -204,12 +203,12 @@
             });
         }
         PUBNUB_demo.publish({
-                channel: userchannel,
-                message: {
-                    "name": name,
-                    "onlinestatus": "online"
-                }
-            });
+            channel: userchannel,
+            message: {
+                "name": name,
+                "onlinestatus": "online"
+            }
+        });
 
         function clear() {
             setTimeout(notification.close(), 2000);
