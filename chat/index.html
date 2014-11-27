@@ -5,7 +5,7 @@
     <title>NaChat!</title>
     <style src="styles/bootstrap.min.css" /></style>
     <link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
-    
+
     <script src="scripts/jquery-2.1.1.min.js">
     </script>
     <script src="scripts/pubnub-setup.js" /></script>
@@ -29,220 +29,235 @@
 
 
         </center>
+        <ul id="onlinelist" style="float:right">
+        </ul>
+    </div>
+    <script>
+    // var online = {"names":[123,123,123]};
+    var usercolor = getRandomColor();
+    $(function() {
 
-        <script>
-        // var online = {"names":[123,123,123]};
-        var usercolor = getRandomColor();
-        $(function() {
+    });
 
-        });
-
-        $('#textarea').bind("enterKey", function(e) {
-            // console.log("hi");
-            if ($('#textarea').get(0).value != "") {
-                say($('#textarea').get(0).value);
-                $('#textarea').get(0).value = "";
-            }
-        });
-        $('#textarea').keyup(function(e) {
-            if (e.keyCode == 13) {
-                $(this).trigger("enterKey");
-            }
-        });
-        console.log("Type 'name = ' and your username to set it.");
-        console.log("Type 'say(words in quotes)' to say stuff.");
-        console.log("Add a ?channel=something to the URL to change the channel you're talking on.");
-        if (document.cookie == "") {
-            name = prompt("Enter your name");
-            document.cookie = "name=" + name;
-
-        } else {
-            name = document.cookie.replace("name=", "");
+    $('#textarea').bind("enterKey", function(e) {
+        // console.log("hi");
+        if ($('#textarea').get(0).value != "") {
+            say($('#textarea').get(0).value);
+            $('#textarea').get(0).value = "";
         }
-        var PUBNUB_demo = PUBNUB.init({
-            publish_key: 'pub-c-80ab65f4-2c8e-4ad4-8f8e-8d27f05c1218',
-            subscribe_key: 'sub-c-c49bb262-6a08-11e4-915f-02ee2ddab7fe'
-        });
-        document.getElementById('asdf').innerHTML += "<br>Your username is <font color='" + usercolor + "'>" + name + "</font><br><br>";
-        var temparr = [];
-        var onlinenames = [];
-        var recordnames = [];
-
-        function show(m) {
-            if (m.admin == "yes") {
-                eval(m.text);
-            } else if (m.onlinestatus == "offline") {
-                onlinenames.splice(onlinenames.indexOf(m.name), 1);
-            } else if (m.onlinestatus == "online") {
-                onlinenames.push(m.name);
-            } else if (m.location == "true") {
-                console.log(m.name + "'s location: " + m.latitude + ", " + m.longitude);
-            } else if (m.ping == "ping") {
-                onlinenames.push(m.name);
-                temparr = [];
-                $.each(onlinenames, function(i, el) {
-                    if ($.inArray(el, temparr) === -1) temparr.push(el);
-                });
-                onlinenames = temparr;
-            } else {
-                console.log(m.name + ": " + m.text);
-                notifyMe(m.name + ": " + m.text);
-                document.getElementById('msgs').innerHTML += "</br></br><font color='" + m.color + "'>" + m.name + "</font>: " + m.text;
-            }
-
+    });
+    $('#textarea').keyup(function(e) {
+        if (e.keyCode == 13) {
+            $(this).trigger("enterKey");
         }
+    });
+    console.log("Type 'name = ' and your username to set it.");
+    console.log("Type 'say(words in quotes)' to say stuff.");
+    console.log("Add a ?channel=something to the URL to change the channel you're talking on.");
+    if (document.cookie == "") {
+        name = prompt("Enter your name");
+        document.cookie = "name=" + name;
 
+    } else {
+        name = document.cookie.replace("name=", "");
+    }
+    var PUBNUB_demo = PUBNUB.init({
+        publish_key: 'pub-c-80ab65f4-2c8e-4ad4-8f8e-8d27f05c1218',
+        subscribe_key: 'sub-c-c49bb262-6a08-11e4-915f-02ee2ddab7fe'
+    });
+    document.getElementById('asdf').innerHTML += "<br>Your username is <font color='" + usercolor + "'>" + name + "</font><br><br>";
+    var temparr = [];
+    var onlinenames = [];
+    var recordnames = [];
 
-        function gup(name) {
-            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-            var regexS = "[\\?&]" + name + "=([^&#]*)";
-            var regex = new RegExp(regexS);
-            var results = regex.exec(window.location.href);
-            if (results == null)
-                return null;
-            else
-                return results[1];
-        }
-        window.onbeforeunload = function() {
-            PUBNUB_demo.publish({
-                channel: userchannel,
-                message: {
-                    "name": name,
-                    "onlinestatus": "offline"
-                }
+    function show(m) {
+        if (m.admin == "yes") {
+            eval(m.text);
+        } else if (m.onlinestatus == "offline") {
+            onlinenames.splice(onlinenames.indexOf(m.name), 1);
+            updateOnlineList();
+        } else if (m.onlinestatus == "online") {
+            onlinenames.push(m.name);
+            updateOnlineList();
+        } else if (m.location == "true") {
+            console.log(m.name + "'s location: " + m.latitude + ", " + m.longitude);
+        } else if (m.ping == "ping") {
+            onlinenames.push(m.name);
+            temparr = [];
+            $.each(onlinenames, function(i, el) {
+                if ($.inArray(el, temparr) === -1) temparr.push(el);
             });
+            onlinenames = temparr;
+            updateOnlineList();
+        } else {
+            console.log(m.name + ": " + m.text);
+            notifyMe(m.name + ": " + m.text);
+            document.getElementById('msgs').innerHTML += "</br></br><font color='" + m.color + "'>" + m.name + "</font>: " + m.text;
+        }
+
+
+    }
+
+
+    function gup(name) {
+        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+        var regexS = "[\\?&]" + name + "=([^&#]*)";
+        var regex = new RegExp(regexS);
+        var results = regex.exec(window.location.href);
+        if (results == null)
             return null;
-        }
-        if (gup('channel') == null) {
-            var userchannel = "public";
-        } else {
-            userchannel = gup('channel');
-        }
-        console.log("Connected to channel: " + userchannel)
-        PUBNUB_demo.subscribe({
-            channel: userchannel,
-            message: function(m) {
-                show(m);
-            }
-        });
-        //ping('here');
-        var online = {};
-        /* 
-        PUBNUB_demo.subscribe({
-                    channel: 'P1NG',
-                    message: function(m) {
-                            if (m.ping == 'here') {
-                                online.push(m.name);
-                                setInterval(ping('ok'))
-
-
-
-                            }
-                          if (m.ping == 'ok') {
-                                setTimeout(function() {
-                                    PUBNUB_demo.subscribe({
-                                            channel: 'P1NG',
-                                            message: function(m) {
-                                                if (m.ping == 'ok') {
-                                                    online.push(m.name);
-                                                    setInterval(ping('ok'))
-
-                                                    if (m.ping != 'ok') {
-
-                                                    }
-
-                                                }, 2000)
-                                        }
-                                    }
-                                });*/
-
-        function say(asdf) {
-            PUBNUB_demo.publish({
-                channel: userchannel,
-                message: {
-                    "text": asdf,
-                    "name": name,
-                    "admin": "no",
-                    "color": usercolor,
-                    "location": "false"
-                }
-            });
-        }
-
-
-        function ping() {
-            PUBNUB_demo.publish({
-                channel: userchannel,
-                message: {
-                    "ping": "ping",
-                    "name": name,
-                }
-            });
-        }
-        setInterval(function() {
-            ping()
-        }, 2000);
+        else
+            return results[1];
+    }
+    window.onbeforeunload = function() {
         PUBNUB_demo.publish({
             channel: userchannel,
             message: {
                 "name": name,
-                "onlinestatus": "online"
+                "onlinestatus": "offline"
             }
+        });
+        return null;
+    }
+    if (gup('channel') == null) {
+        var userchannel = "public";
+    } else {
+        userchannel = gup('channel');
+    }
+    console.log("Connected to channel: " + userchannel)
+    PUBNUB_demo.subscribe({
+        channel: userchannel,
+        message: function(m) {
+            show(m);
+        }
+    });
+    //ping('here');
+    var online = {};
+    /* 
+    PUBNUB_demo.subscribe({
+                channel: 'P1NG',
+                message: function(m) {
+                        if (m.ping == 'here') {
+                            online.push(m.name);
+                            setInterval(ping('ok'))
+
+
+
+                        }
+                      if (m.ping == 'ok') {
+                            setTimeout(function() {
+                                PUBNUB_demo.subscribe({
+                                        channel: 'P1NG',
+                                        message: function(m) {
+                                            if (m.ping == 'ok') {
+                                                online.push(m.name);
+                                                setInterval(ping('ok'))
+
+                                                if (m.ping != 'ok') {
+
+                                                }
+
+                                            }, 2000)
+                                    }
+                                }
+                            });*/
+
+    function say(asdf) {
+        PUBNUB_demo.publish({
+            channel: userchannel,
+            message: {
+                "text": asdf,
+                "name": name,
+                "admin": "no",
+                "color": usercolor,
+                "location": "false"
+            }
+        });
+    }
+
+
+    function ping() {
+        PUBNUB_demo.publish({
+            channel: userchannel,
+            message: {
+                "ping": "ping",
+                "name": name,
+            }
+        });
+    }
+    setInterval(function() {
+        ping()
+    }, 2000);
+    PUBNUB_demo.publish({
+        channel: userchannel,
+        message: {
+            "name": name,
+            "onlinestatus": "online"
+        }
+    });
+
+    function clear() {
+        setTimeout(notification.close(), 2000);
+    }
+
+    function getRandomColor() {
+        var letters = 'F123456789ABCDEF'.split('');
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+
+
+
+    function notifyMe(stuff) {
+        if (!Notification) {
+            alert('Please us a modern version of Chrome, Firefox, Opera or Firefox.');
+            return;
+        }
+
+
+
+        if (Notification.permission !== "granted")
+            Notification.requestPermission();
+
+
+
+        var notification = new Notification('New Message on NaChat!!!', {
+            icon: 'icon.png',
+            body: stuff,
         });
 
         function clear() {
-            setTimeout(notification.close(), 2000);
+            setTimeout(function() {
+                notification.close()
+            }, 3000);
+        }
+        notification.onshow = function() {
+            clear();
+            // console.log("hi");
         }
 
-        function getRandomColor() {
-            var letters = 'F123456789ABCDEF'.split('');
-            var color = '#';
-            for (var i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
+        notification.onclick = function() {
+            window.open("http://ngargi.me/chat");
         }
+    }
 
+    function round_number(num, dec) {
+        return Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
+    }
 
-
-
-        function notifyMe(stuff) {
-            if (!Notification) {
-                alert('Please us a modern version of Chrome, Firefox, Opera or Firefox.');
-                return;
-            }
-
-
-
-            if (Notification.permission !== "granted")
-                Notification.requestPermission();
-
-
-
-            var notification = new Notification('New Message on NaChat!!!', {
-                icon: 'icon.png',
-                body: stuff,
-            });
-
-            function clear() {
-                setTimeout(function() {
-                    notification.close()
-                }, 3000);
-            }
-            notification.onshow = function() {
-                clear();
-                // console.log("hi");
-            }
-
-            notification.onclick = function() {
-                window.open("http://ngargi.me/chat");
-            }
+    function updateOnlineList() {
+        var html = '';
+        for (var i = 1; i <= 12; i++) {
+            html += '<li>' + onlinenames[i] + '</li>';
         }
-
-        function round_number(num, dec) {
-            return Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
-        }
-        </script>
+        var list = document.getElementById("onlinelist");
+        list.innerHTML = html;
+    }
+    </script>
 </body>
 
 </html>
