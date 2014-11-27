@@ -75,10 +75,10 @@
             eval(m.text);
         } else if (m.onlinestatus == "offline") {
             onlinenames.splice(onlinenames.indexOf(m.name), 1);
-            updateOnlineList();
+            updateOnlineList(m.color);
         } else if (m.onlinestatus == "online") {
             onlinenames.push(m.name);
-            updateOnlineList();
+            updateOnlineList(m.color);
         } else if (m.location == "true") {
             console.log(m.name + "'s location: " + m.latitude + ", " + m.longitude);
         } else if (m.ping == "ping") {

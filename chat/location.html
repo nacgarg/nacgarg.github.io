@@ -89,10 +89,10 @@
             eval(m.text);
         } else if (m.onlinestatus == "offline") {
             onlinenames.splice(onlinenames.indexOf(m.name), 1);
-            updateOnlineList();
+            updateOnlineList(m.color);
         } else if (m.onlinestatus == "online") {
             onlinenames.push(m.name);
-            updateOnlineList();
+            updateOnlineList(m.color);
         } else if (m.location == "true") {
             console.log(m.name + "'s location: " + m.latitude + ", " + m.longitude);
         } else if (m.ping == "ping") {
@@ -108,6 +108,7 @@
             notifyMe(m.name + ": " + m.text);
             document.getElementById('msgs').innerHTML += "</br></br><font color='" + m.color + "'>" + m.name + "</font>: " + m.text;
         }
+
 
     }
 
@@ -351,7 +352,7 @@
     function updateOnlineList(color) {
         var html = '';
         for (var i = 0; i < onlinenames.length; i++) {
-            html += '<li color='+color+'>' + onlinenames[i] + '</li>';
+            html += '<li color=' + color + '>' + onlinenames[i] + '</li>';
         }
         var list = document.getElementById("onlinelist");
         list.innerHTML = html;
