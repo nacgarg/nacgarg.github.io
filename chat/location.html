@@ -250,6 +250,22 @@
         function round_number(num, dec) {
             return Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
         }
+        var map;
+        function initialize() {
+              var myLatlng = new google.maps.LatLng(latitude,longitude);
+
+            var mapOptions = {
+                zoom: 13,
+                center: myLatlng
+            };
+            map = new google.maps.Map(document.getElementById('map-canvas'),
+                mapOptions);
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                title: name
+            });
+        }
 
         function geoFindMe() {
             if (!navigator.geolocation) {
@@ -265,16 +281,8 @@
                 }, 5000);
                 console.log(latitude + ', ' + longitude);
                 codeLatLng(latitude, longitude);
-                var map;
 
-                function initialize() {
-                    var mapOptions = {
-                        zoom: 13,
-                        center: new google.maps.LatLng(latitude, longitude)
-                    };
-                    map = new google.maps.Map(document.getElementById('map-canvas'),
-                        mapOptions);
-                }
+
 
                 google.maps.event.addDomListener(window, 'load', initialize);
                 // document.getElementById('map').innerHTML = "<img src='https://maps.googleapis.com/maps/api/staticmap?center=" + round_number(latitude, 6) + "," + round_number(longitude, 6) + "&zoom=15&size=600x300'></img>";
