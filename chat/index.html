@@ -5,6 +5,7 @@
     <title>NaChat!</title>
     <style src="styles/bootstrap.min.css" /></style>
     <link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Oxygen:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <script src="scripts/jquery-2.1.1.min.js">
     </script>
     <script src="scripts/pubnub-setup.js" /></script>
@@ -62,7 +63,7 @@
             publish_key: 'pub-c-80ab65f4-2c8e-4ad4-8f8e-8d27f05c1218',
             subscribe_key: 'sub-c-c49bb262-6a08-11e4-915f-02ee2ddab7fe'
         });
-        document.getElementById('asdf').innerHTML += "<br>Your username is <font color='" + usercolor + "'>" + name + "</font><br><br>";
+       document.getElementById('asdf').innerHTML += "<br>Your username is <font color='" + usercolor + "'><font style='font-family:Oxygen'>" + name + "</font></font><br><br>";
         var temparr = [];
         var onlinenames = [];
         var recordnames = [];
