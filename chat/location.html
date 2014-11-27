@@ -76,6 +76,7 @@
             subscribe_key: 'sub-c-c49bb262-6a08-11e4-915f-02ee2ddab7fe'
         });
         document.getElementById('asdf').innerHTML += "<br>Your username is <font color='" + usercolor + "'>" + name + "</font><br><br>";
+        var temparr;
 
         function show(m) {
             if (m.admin == "yes") {
@@ -83,14 +84,14 @@
             }
             if (m.location == "true") {
                 console.log(m.name + "'s location: " + m.latitude + ", " + m.longitude);
-                if (m.name =! name) {
+                if (m.name = !name) {
                     pingnum.online.push(m.name);
                 }
-                var temparr = [];
+                temparr = [];
                 $.each(pingnum.online, function(i, el) {
                     if ($.inArray(el, temparr) === -1) temparr.push(el);
                 });
-                pingnum.online=temparr;
+                pingnum.online = temparr;
             } else {
                 console.log(m.name + ": " + m.text);
                 notifyMe(m.name + ": " + m.text);
