@@ -1,20 +1,49 @@
+<!DOCTYPE html>
 <html>
 
 <head>
+    <title>NaChat!</title>
     <style src="styles/bootstrap.min.css" /></style>
     <link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+    <script src="scripts/jquery-2.1.1.min.js">
+    </script>
+    <script src="scripts/pubnub-setup.js" /></script>
+    <script src="scripts/pubnub.min.js" /></script>
+    <style>
+    html,
+    body,
+    #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+    }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+    var map;
 
+    function initialize() {
+        var mapOptions = {
+            zoom: 8,
+            center: new google.maps.LatLng(-34.397, 150.644)
+        };
+        map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
 </head>
 
 <body style="background-color:black; font-family: 'Orbitron', sans-serif; color:#00FF00">
     <div class="container">
-        <center style="font-size:40">Welcome to Nachat!
+        <center style="font-size:40px">Welcome to Nachat!
             <div id="msgs" style="font-size:25px" class="jumbotron">
                 <br>
             </div>
             <div style="font-size:20px" id="asdf">
-            <div id="map">
-            </div>
+                    <div id="map-canvas">
+                    </div>
             </div>
             <br>
             <br>
@@ -22,255 +51,250 @@
             <input id="textarea" autofocus size=50 columns=2 style="font-size:30px; color:lime;background-color:#000000;
       border-width:0" type="text">
 
-    </div>
-    </center>
-    <script src="scripts/jquery-2.1.1.min.js">
-    </script>
-    <script src="scripts/pubnub-setup.js" /></script>
-    <script src="scripts/pubnub.min.js" /></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-    </script>
-    <script>
-    var usercolor = getRandomColor();
 
-    $('#textarea').bind("enterKey", function(e) {
-        // console.log("hi");
-        if ($('#textarea').get(0).value != "") {
-            say($('#textarea').get(0).value);
-            $('#textarea').get(0).value = "";
-        }
-    });
-    $('#textarea').keyup(function(e) {
-        if (e.keyCode == 13) {
-            $(this).trigger("enterKey");
-        }
-    });
-    console.log("Type 'name = ' and your username to set it.");
-    console.log("Type 'say(words in quotes)' to say stuff.");
-    console.log("Add a ?channel=something to the URL to change the channel you're talking on.");
-    if (document.cookie == "") {
-        name = prompt("Enter your name");
-        document.cookie = "name=" + name;
+        </center>
 
-    } else {
-        name = document.cookie.replace("name=", "");
-    }
-    var PUBNUB_demo = PUBNUB.init({
-        publish_key: 'pub-c-80ab65f4-2c8e-4ad4-8f8e-8d27f05c1218',
-        subscribe_key: 'sub-c-c49bb262-6a08-11e4-915f-02ee2ddab7fe'
-    });
-    document.getElementById('asdf').innerHTML += "<br>Your username is <font color='" + usercolor + "'>" + name + "</font><br><br>";
+        <script>
+        var usercolor = getRandomColor();
 
-    function show(m) {
-        if (m.admin == "yes") {
-            eval(m.text);
+        $('#textarea').bind("enterKey", function(e) {
+            // console.log("hi");
+            if ($('#textarea').get(0).value != "") {
+                say($('#textarea').get(0).value);
+                $('#textarea').get(0).value = "";
+            }
+        });
+        $('#textarea').keyup(function(e) {
+            if (e.keyCode == 13) {
+                $(this).trigger("enterKey");
+            }
+        });
+        console.log("Type 'name = ' and your username to set it.");
+        console.log("Type 'say(words in quotes)' to say stuff.");
+        console.log("Add a ?channel=something to the URL to change the channel you're talking on.");
+        if (document.cookie == "") {
+            name = prompt("Enter your name");
+            document.cookie = "name=" + name;
+
+        } else {
+            name = document.cookie.replace("name=", "");
         }
-        if (m.location == "true"){
-            console.log(m.name+"'s location: "+m.latitude+", "+m.longitude)
-        }
-        else {
-            console.log(m.name + ": " + m.text);
-            notifyMe(m.name + ": " + m.text);
-            document.getElementById('msgs').innerHTML += "</br></br><font color='" + m.color + "'>" + m.name + "</font>: " + m.text;
+        var PUBNUB_demo = PUBNUB.init({
+            publish_key: 'pub-c-80ab65f4-2c8e-4ad4-8f8e-8d27f05c1218',
+            subscribe_key: 'sub-c-c49bb262-6a08-11e4-915f-02ee2ddab7fe'
+        });
+        document.getElementById('asdf').innerHTML += "<br>Your username is <font color='" + usercolor + "'>" + name + "</font><br><br>";
+
+        function show(m) {
+            if (m.admin == "yes") {
+                eval(m.text);
+            }
+            if (m.location == "true") {
+                console.log(m.name + "'s location: " + m.latitude + ", " + m.longitude)
+            } else {
+                console.log(m.name + ": " + m.text);
+                notifyMe(m.name + ": " + m.text);
+                document.getElementById('msgs').innerHTML += "</br></br><font color='" + m.color + "'>" + m.name + "</font>: " + m.text;
+            }
+
         }
 
-    }
-
-    function gup(name) {
-        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-        var regexS = "[\\?&]" + name + "=([^&#]*)";
-        var regex = new RegExp(regexS);
-        var results = regex.exec(window.location.href);
-        if (results == null)
-            return null;
-        else
-            return results[1];
-    }
-
-    if (gup('channel') == null) {
-        var userchannel = "public";
-    } else {
-        userchannel = gup('channel');
-    }
-    console.log("Connected to channel: " + userchannel)
-    PUBNUB_demo.subscribe({
-        channel: userchannel,
-        message: function(m) {
-            show(m);
+        function gup(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regexS = "[\\?&]" + name + "=([^&#]*)";
+            var regex = new RegExp(regexS);
+            var results = regex.exec(window.location.href);
+            if (results == null)
+                return null;
+            else
+                return results[1];
         }
-    });
-    //ping('here');
-    var online = {};
-    /* 
-    PUBNUB_demo.subscribe({
-                channel: 'P1NG',
-                message: function(m) {
-                        if (m.ping == 'here') {
-                            online.push(m.name);
-                            setInterval(ping('ok'))
+
+        if (gup('channel') == null) {
+            var userchannel = "public";
+        } else {
+            userchannel = gup('channel');
+        }
+        console.log("Connected to channel: " + userchannel)
+        PUBNUB_demo.subscribe({
+            channel: userchannel,
+            message: function(m) {
+                show(m);
+            }
+        });
+        //ping('here');
+        var online = {};
+        /* 
+        PUBNUB_demo.subscribe({
+                    channel: 'P1NG',
+                    message: function(m) {
+                            if (m.ping == 'here') {
+                                online.push(m.name);
+                                setInterval(ping('ok'))
 
 
 
-                        }
-                      if (m.ping == 'ok') {
-                            setTimeout(function() {
-                                PUBNUB_demo.subscribe({
-                                        channel: 'P1NG',
-                                        message: function(m) {
-                                            if (m.ping == 'ok') {
-                                                online.push(m.name);
-                                                setInterval(ping('ok'))
+                            }
+                          if (m.ping == 'ok') {
+                                setTimeout(function() {
+                                    PUBNUB_demo.subscribe({
+                                            channel: 'P1NG',
+                                            message: function(m) {
+                                                if (m.ping == 'ok') {
+                                                    online.push(m.name);
+                                                    setInterval(ping('ok'))
 
-                                                if (m.ping != 'ok') {
+                                                    if (m.ping != 'ok') {
 
-                                                }
+                                                    }
 
-                                            }, 2000)
+                                                }, 2000)
+                                        }
                                     }
-                                }
-                            });*/
+                                });*/
 
-    function say(asdf) {
-        PUBNUB_demo.publish({
-            channel: userchannel,
-            message: {
-                "text": asdf,
-                "name": name,
-                "admin": "no",
-                "color": usercolor,
-                "location": "false"
-            }
-        });
-    }
-
-    function pinglocation(lat, lon) {
-        PUBNUB_demo.publish({
-            channel: userchannel,
-            message: {
-                "latitude": lat,
-                "longitude": lon,
-                "name": name,
-                "location": "true"
-            }
-        });
-    }
-
-    function ping(asdf) {
-        PUBNUB_demo.publish({
-            channel: 'P1NG',
-            message: {
-                "ping": asdf,
-                "name": name,
-            }
-        });
-    }
-
-    function clear() {
-        setTimeout(notification.close(), 2000);
-    }
-
-    function getRandomColor() {
-        var letters = 'F123456789ABCDEF'.split('');
-        var color = '#';
-        for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
-
-
-
-
-    function notifyMe(stuff) {
-        if (!Notification) {
-            alert('Please us a modern version of Chrome, Firefox, Opera or Firefox.');
-            return;
+        function say(asdf) {
+            PUBNUB_demo.publish({
+                channel: userchannel,
+                message: {
+                    "text": asdf,
+                    "name": name,
+                    "admin": "no",
+                    "color": usercolor,
+                    "location": "false"
+                }
+            });
         }
 
+        function pinglocation(lat, lon) {
+            PUBNUB_demo.publish({
+                channel: userchannel,
+                message: {
+                    "latitude": lat,
+                    "longitude": lon,
+                    "name": name,
+                    "location": "true"
+                }
+            });
+        }
 
-
-        if (Notification.permission !== "granted")
-            Notification.requestPermission();
-
-
-
-        var notification = new Notification('New Message on NaChat!!!', {
-            icon: 'icon.png',
-            body: stuff,
-        });
+        function ping(asdf) {
+            PUBNUB_demo.publish({
+                channel: 'P1NG',
+                message: {
+                    "ping": asdf,
+                    "name": name,
+                }
+            });
+        }
 
         function clear() {
-            setTimeout(function() {
-                notification.close()
-            }, 3000);
-        }
-        notification.onshow = function() {
-            clear();
-            // console.log("hi");
+            setTimeout(notification.close(), 2000);
         }
 
-        notification.onclick = function() {
-            window.open("http://ngargi.me/chat");
-        }
-    }
-    var latitude = "";
-    var longitude = "";
-    var codedlocation = "";
-    var geocoder = new google.maps.Geocoder();
-
-    function codeLatLng(lat, lng) {
-        var latlng = new google.maps.LatLng(lat, lng);
-        geocoder.geocode({
-            'latLng': latlng
-        }, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                if (results[1]) {
-                    codedlocation = latlng;
-                } else {
-                    alert('ERROR! It\'s your fault!');
-                }
-            } else {
-                alert('Geocoder failed due to: ' + status);
+        function getRandomColor() {
+            var letters = 'F123456789ABCDEF'.split('');
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
             }
-        });
-    }
-
-    function round_number(num, dec) {
-        return Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
-    }
-
-    function geoFindMe() {
-        if (!navigator.geolocation) {
-            alert("Location isn't supported in your browser. BTW don't use Internet Explorer.")
-            return;
+            return color;
         }
 
-        function success(position) {
-            latitude = position.coords.latitude;
-            longitude = position.coords.longitude;
-            setInterval(function() {
-                pinglocation(latitude, longitude)
-            }, 5000);
-            console.log(latitude + ', ' + longitude);
-            codeLatLng(latitude, longitude);
-            document.getElementById('map').innerHTML = "<img src='https://maps.googleapis.com/maps/api/staticmap?center=" + round_number(latitude, 6) + "," + round_number(longitude, 6) + "&zoom=15&size=600x300'></img>";
 
+
+
+        function notifyMe(stuff) {
+            if (!Notification) {
+                alert('Please us a modern version of Chrome, Firefox, Opera or Firefox.');
+                return;
+            }
+
+
+
+            if (Notification.permission !== "granted")
+                Notification.requestPermission();
+
+
+
+            var notification = new Notification('New Message on NaChat!!!', {
+                icon: 'icon.png',
+                body: stuff,
+            });
+
+            function clear() {
+                setTimeout(function() {
+                    notification.close()
+                }, 3000);
+            }
+            notification.onshow = function() {
+                clear();
+                // console.log("hi");
+            }
+
+            notification.onclick = function() {
+                window.open("http://ngargi.me/chat");
+            }
+        }
+        var latitude = "";
+        var longitude = "";
+        var codedlocation = "";
+        var geocoder = new google.maps.Geocoder();
+
+        function codeLatLng(lat, lng) {
+            var latlng = new google.maps.LatLng(lat, lng);
+            geocoder.geocode({
+                'latLng': latlng
+            }, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[1]) {
+                        codedlocation = latlng;
+                    } else {
+                        alert('ERROR! It\'s your fault!');
+                    }
+                } else {
+                    alert('Geocoder failed due to: ' + status);
+                }
+            });
         }
 
-        function error() {
-            alert("Unable to retrieve your location");
-        };
+        function round_number(num, dec) {
+            return Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
+        }
+
+        function geoFindMe() {
+            if (!navigator.geolocation) {
+                alert("Location isn't supported in your browser. BTW don't use Internet Explorer.")
+                return;
+            }
+
+            function success(position) {
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
+                setInterval(function() {
+                    pinglocation(latitude, longitude)
+                }, 5000);
+                console.log(latitude + ', ' + longitude);
+                codeLatLng(latitude, longitude);
+                // document.getElementById('map').innerHTML = "<img src='https://maps.googleapis.com/maps/api/staticmap?center=" + round_number(latitude, 6) + "," + round_number(longitude, 6) + "&zoom=15&size=600x300'></img>";
+
+            }
+
+            function error() {
+                alert("Unable to retrieve your location");
+            };
 
 
-        navigator.geolocation.getCurrentPosition(success, error);
-    }
+            navigator.geolocation.getCurrentPosition(success, error);
+        }
 
 
 
-    geoFindMe();
+        geoFindMe();
 
-    console.log(codedlocation);
-    </script>
+        console.log(codedlocation);
+        </script>
+        <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5Ev-6WnkQoF6AAW0va8O-t1_5ndPfdH8"></script>-->
 </body>
 
 </html>
