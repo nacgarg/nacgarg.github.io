@@ -44,6 +44,9 @@
         </center>
 
         <script>
+        var pingnum = {
+            "online": []
+        };
         var usercolor = getRandomColor();
 
         $('#textarea').bind("enterKey", function(e) {
@@ -79,7 +82,11 @@
                 eval(m.text);
             }
             if (m.location == "true") {
-                console.log(m.name + "'s location: " + m.latitude + ", " + m.longitude)
+                console.log(m.name + "'s location: " + m.latitude + ", " + m.longitude);
+                pingnum.online.push(m.name);
+                $.each(pingnum.online, function(i, el) {
+                    if ($.inArray(el, uniqueNames) === -1) pingnum.online.push(el);
+                });
             } else {
                 console.log(m.name + ": " + m.text);
                 notifyMe(m.name + ": " + m.text);
@@ -251,8 +258,9 @@
             return Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
         }
         var map;
+
         function initialize() {
-              var myLatlng = new google.maps.LatLng(latitude,longitude);
+            var myLatlng = new google.maps.LatLng(latitude, longitude);
 
             var mapOptions = {
                 zoom: 13,
@@ -303,6 +311,12 @@
         geoFindMe();
 
         console.log(codedlocation);
+
+        function checkPing() {
+            if (pingnum <= 1) {
+
+            }
+        }
         </script>
         <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5Ev-6WnkQoF6AAW0va8O-t1_5ndPfdH8"></script>-->
 </body>
