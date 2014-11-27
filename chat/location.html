@@ -46,14 +46,8 @@
         <script>
         // var online = {"names":[123,123,123]};
         var usercolor = getRandomColor();
-        $(document).ready(function() {
-            PUBNUB_demo.publish({
-                channel: userchannel,
-                message: {
-                    "name": name,
-                    "onlinestatus": "online"
-                }
-            });
+        $(function() {
+            
         });
 
         $('#textarea').bind("enterKey", function(e) {
@@ -209,6 +203,13 @@
                 }
             });
         }
+        PUBNUB_demo.publish({
+                channel: userchannel,
+                message: {
+                    "name": name,
+                    "onlinestatus": "online"
+                }
+            });
 
         function clear() {
             setTimeout(notification.close(), 2000);
