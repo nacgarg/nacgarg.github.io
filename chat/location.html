@@ -76,12 +76,18 @@
         document.getElementById('asdf').innerHTML += "<br>Your username is <font color='" + usercolor + "'>" + name + "</font><br><br>";
         var temparr;
         onlinenames = [];
-
+        var recordnames=[];
+        var namenum=0;
+        var namecount={};
         function show(m) {
             if (m.admin == "yes") {
                 eval(m.text);
             }
+
             if (m.location == "true") {
+                recordnames.push(m.name);
+                recordnames.forEach(function(i) { namecount[i] = (namecount[i]||0)+1;  });
+                console.log(namecount);
                 console.log(m.name + "'s location: " + m.latitude + ", " + m.longitude);
                 onlinenames.push(m.name);
                // temparr = [];
@@ -89,6 +95,7 @@
                     if ($.inArray(el, temparr) === -1) temparr.push(el);
 
                 });
+                namenum++;
                 onlinenames = temparr;
             } else {
                 console.log(m.name + ": " + m.text);
