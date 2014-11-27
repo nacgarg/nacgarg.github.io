@@ -86,7 +86,7 @@
 
             if (m.location == "true") {
                 recordnames.push(m.name);
-                recordnames.forEach(function(i) { namecount[i] = (namecount[i]||0)+1;  });
+                recordnames.forEach(function(i) { recordnames[i] = (namecount[i]||0)+1;  });
                 console.log(namecount);
                 console.log(m.name + "'s location: " + m.latitude + ", " + m.longitude);
                 onlinenames.push(m.name);
