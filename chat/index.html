@@ -83,12 +83,11 @@
                     if ($.inArray(el, temparr) === -1) temparr.push(el);
                 });
                 onlinenames = temparr;
+            } else {
+                console.log(m.name + ": " + m.text);
+                notifyMe(m.name + ": " + m.text);
+                document.getElementById('msgs').innerHTML += "</br></br><font color='" + m.color + "'>" + m.name + "</font>: " + m.text;
             }
-        } else {
-            console.log(m.name + ": " + m.text);
-            notifyMe(m.name + ": " + m.text);
-            document.getElementById('msgs').innerHTML += "</br></br><font color='" + m.color + "'>" + m.name + "</font>: " + m.text;
-        }
 
         }
 
@@ -238,6 +237,7 @@
                 window.open("http://ngargi.me/chat");
             }
         }
+
         function round_number(num, dec) {
             return Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
         }
