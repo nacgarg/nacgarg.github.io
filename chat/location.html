@@ -90,22 +90,19 @@
         function show(m) {
             if (m.admin == "yes") {
                 eval(m.text);
-            }
-            if (m.onlinestatus == "offline") {
+            } else if (m.onlinestatus == "offline") {
                 onlinenames.splice(onlinenames.indexOf(m.name), 1);
-            }
-            if (m.onlinestatus == "online") {
+            } else if (m.onlinestatus == "online") {
                 onlinenames.push(m.name);
-            }
-            if (m.location == "true") {
+            } else if (m.location == "true") {
                 console.log(m.name + "'s location: " + m.latitude + ", " + m.longitude);
-             //   onlinenames.push(m.name);
-             //   temparr = [];
-             //   $.each(onlinenames, function(i, el) {
-             //       if ($.inArray(el, temparr) === -1) temparr.push(el);
+                //   onlinenames.push(m.name);
+                //   temparr = [];
+                //   $.each(onlinenames, function(i, el) {
+                //       if ($.inArray(el, temparr) === -1) temparr.push(el);
 
-              //  });
-               // onlinenames = temparr;
+                //  });
+                // onlinenames = temparr;
             } else {
                 console.log(m.name + ": " + m.text);
                 notifyMe(m.name + ": " + m.text);
