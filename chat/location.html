@@ -102,7 +102,7 @@
                 if ($.inArray(el, temparr) === -1) temparr.push(el);
             });
             onlinenames = temparr;
-            updateOnlineList();
+            updateOnlineList(m.color);
         } else {
             console.log(m.name + ": " + m.text);
             notifyMe(m.name + ": " + m.text);
@@ -348,10 +348,10 @@
 
     console.log(codedlocation);
 
-    function updateOnlineList() {
+    function updateOnlineList(color) {
         var html = '';
         for (var i = 0; i < onlinenames.length; i++) {
-            html += '<li>' + onlinenames[i] + '</li>';
+            html += '<li color='+color+'>' + onlinenames[i] + '</li>';
         }
         var list = document.getElementById("onlinelist");
         list.innerHTML = html;
