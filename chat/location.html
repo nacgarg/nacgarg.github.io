@@ -98,6 +98,7 @@
             updateOnlineList();
         } else if (m.location == "true") {
             console.log(m.name + "'s location: " + m.latitude + ", " + m.longitude);
+            mapmarker(m.name, m.latitude, m.longitude)
         } else if (m.ping == "ping") {
             onlinenames.push(m.name);
             temparr = [];
@@ -359,6 +360,13 @@
         }
         var list = document.getElementById("onlinelist");
         list.innerHTML = html;
+    }
+    function mapmarker(name2, lat, lon){
+        new google.maps.Marker({
+            position: new google.maps.LatLng(lat, lon);,
+            map: map,
+            title: name2
+        });
     }
 
     // function checkPing() {
