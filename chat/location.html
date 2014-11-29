@@ -37,9 +37,10 @@
             </div>
             <br>
             <br>
-            <form id="form">
+            <form id="form" autocomplete="off">
                 <input id="textarea" autofocus size=50 columns=2 style="font-size:30px; color:lime;background-color:#000000;
       border-width:0" type="text">
+      <input type="submit" value="Send">
             </form>
 
 
@@ -56,9 +57,10 @@
     $(function() {
 
     });
-    $('form').submit(function() {
-        submitform();
-    });
+    $( "#form" ).submit(function( event ) {
+  submitform();
+  event.preventDefault();
+});
 
     function submitform() {
         if ($('#textarea').get(0).value != "") {
