@@ -22,16 +22,19 @@
             </div>
             <br>
             <br>
-
-            <input id="textarea" autofocus size=50 columns=2 style="font-size:30px; color:lime;background-color:#000000;
+            <form onsubmit="submitform()">
+                <input id="textarea" autofocus size=50 columns=2 style="font-size:30px; color:lime;background-color:#000000;
       border-width:0" type="text">
 
-
+            </form>
         </center>
         <div style="font-size:20px;float:right">
-        Online:
-        <ul id="onlinelist" style="list-style-type:none;">
-        </ul>
+            Online:
+            <ul id="onlinelist" style="list-style-type:none;">
+            </ul>
+        </div>
+        <div style="font-size:20px;float:left">
+            <a href="location.html">Check out the location chat!</a>
         </div>
     </div>
     <script>
@@ -41,18 +44,12 @@
 
     });
 
-    $('#textarea').bind("enterKey", function(e) {
-        // console.log("hi");
+    function submitform() {
         if ($('#textarea').get(0).value != "") {
             say($('#textarea').get(0).value);
             $('#textarea').get(0).value = "";
         }
-    });
-    $('#textarea').keyup(function(e) {
-        if (e.keyCode == 13) {
-            $(this).trigger("enterKey");
-        }
-    });
+    };
     console.log("Type 'name = ' and your username to set it.");
     console.log("Type 'say(words in quotes)' to say stuff.");
     console.log("Add a ?channel=something to the URL to change the channel you're talking on.");
@@ -251,7 +248,7 @@
         return Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
     }
 
-   function updateOnlineList() {
+    function updateOnlineList() {
         var html = '';
         for (var i = 0; i < onlinenames.length; i++) {
             html += '<li>' + onlinenames[i] + '</li>';

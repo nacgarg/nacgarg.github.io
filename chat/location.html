@@ -37,9 +37,9 @@
             </div>
             <br>
             <br>
-
+            <form onsubmit="submitform()">
             <input id="textarea" autofocus size=50 columns=2 style="font-size:30px; color:lime;background-color:#000000;
-      border-width:0" type="text">
+      border-width:0" type="text"></form>
 
 
         </center>
@@ -56,18 +56,12 @@
 
     });
 
-    $('#textarea').bind("enterKey", function(e) {
-        // console.log("hi");
+   function submitform() {
         if ($('#textarea').get(0).value != "") {
             say($('#textarea').get(0).value);
             $('#textarea').get(0).value = "";
         }
-    });
-    $('#textarea').keyup(function(e) {
-        if (e.keyCode == 13) {
-            $(this).trigger("enterKey");
-        }
-    });
+    };
     console.log("Type 'name = ' and your username to set it.");
     console.log("Type 'say(words in quotes)' to say stuff.");
     console.log("Add a ?channel=something to the URL to change the channel you're talking on.");
