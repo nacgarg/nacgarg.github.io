@@ -37,16 +37,17 @@
             </div>
             <br>
             <br>
-            <form onsubmit="submitform()">
-            <input id="textarea" autofocus size=50 columns=2 style="font-size:30px; color:lime;background-color:#000000;
-      border-width:0" type="text"></form>
+            <form id="form">
+                <input id="textarea" autofocus size=50 columns=2 style="font-size:30px; color:lime;background-color:#000000;
+      border-width:0" type="text">
+            </form>
 
 
         </center>
         <div style="font-size:20px;float:right">
-        Online:
-        <ul id="onlinelist" style="list-style-type:none;">
-        </ul>
+            Online:
+            <ul id="onlinelist" style="list-style-type:none;">
+            </ul>
         </div>
     </div>
     <script>
@@ -55,8 +56,11 @@
     $(function() {
 
     });
+    $('form').submit(function() {
+        submitform();
+    });
 
-   function submitform() {
+    function submitform() {
         if ($('#textarea').get(0).value != "") {
             say($('#textarea').get(0).value);
             $('#textarea').get(0).value = "";
@@ -308,71 +312,89 @@
             map: map,
             title: name
         });
-        var styles = [
-  {
-    "featureType": "administrative.locality",
-    "stylers": [
-      { "visibility": "on" },
-      { "hue": "#00ff33" },
-      { "color": "#00ff00" },
-      { "invert_lightness": true },
-      { "weight": 0.9 },
-      { "saturation": 62 },
-      { "lightness": 2 }
-    ]
-  },{
-    "featureType": "administrative.neighborhood",
-    "stylers": [
-      { "color": "#00ff00" },
-      { "weight": 0.1 },
-      { "saturation": -57 },
-      { "visibility": "simplified" }
-    ]
-  },{
-    "featureType": "road.highway",
-    "stylers": [
-      { "color": "#00ff00" },
-      { "weight": 0.1 },
-      { "saturation": -70 }
-    ]
-  },{
-    "featureType": "road.local",
-    "stylers": [
-      { "color": "#80ff80" },
-      { "saturation": -65 },
-      { "weight": 0.3 }
-    ]
-  },{
-    "featureType": "road.arterial",
-    "stylers": [
-      { "saturation": 100 },
-      { "lightness": -47 },
-      { "weight": 0.9 },
-      { "hue": "#00ff19" },
-      { "color": "#048804" }
-    ]
-  },{
-    "featureType": "landscape",
-    "stylers": [
-      { "color": "#808080" },
-      { "lightness": -90 }
-    ]
-  },{
-    "featureType": "water",
-    "stylers": [
-      { "color": "#000000" }
-    ]
-  },{
-    "featureType": "poi",
-    "stylers": [
-      { "color": "#808080" },
-      { "visibility": "off" }
-    ]
-  },{
-  }
-]
+        var styles = [{
+            "featureType": "administrative.locality",
+            "stylers": [{
+                "visibility": "on"
+            }, {
+                "hue": "#00ff33"
+            }, {
+                "color": "#00ff00"
+            }, {
+                "invert_lightness": true
+            }, {
+                "weight": 0.9
+            }, {
+                "saturation": 62
+            }, {
+                "lightness": 2
+            }]
+        }, {
+            "featureType": "administrative.neighborhood",
+            "stylers": [{
+                "color": "#00ff00"
+            }, {
+                "weight": 0.1
+            }, {
+                "saturation": -57
+            }, {
+                "visibility": "simplified"
+            }]
+        }, {
+            "featureType": "road.highway",
+            "stylers": [{
+                "color": "#00ff00"
+            }, {
+                "weight": 0.1
+            }, {
+                "saturation": -70
+            }]
+        }, {
+            "featureType": "road.local",
+            "stylers": [{
+                "color": "#80ff80"
+            }, {
+                "saturation": -65
+            }, {
+                "weight": 0.3
+            }]
+        }, {
+            "featureType": "road.arterial",
+            "stylers": [{
+                "saturation": 100
+            }, {
+                "lightness": -47
+            }, {
+                "weight": 0.9
+            }, {
+                "hue": "#00ff19"
+            }, {
+                "color": "#048804"
+            }]
+        }, {
+            "featureType": "landscape",
+            "stylers": [{
+                "color": "#808080"
+            }, {
+                "lightness": -90
+            }]
+        }, {
+            "featureType": "water",
+            "stylers": [{
+                "color": "#000000"
+            }]
+        }, {
+            "featureType": "poi",
+            "stylers": [{
+                "color": "#808080"
+            }, {
+                "visibility": "off"
+            }]
+        }, {}]
 
-map.setOptions({styles: styles});
+        map.setOptions({
+            styles: styles
+        });
     }
 
     function geoFindMe() {
@@ -420,7 +442,8 @@ map.setOptions({styles: styles});
         var list = document.getElementById("onlinelist");
         list.innerHTML = html;
     }
-    function mapmarker(name2, lat, lon){
+
+    function mapmarker(name2, lat, lon) {
         new google.maps.Marker({
             position: new google.maps.LatLng(lat, lon),
             map: map,
