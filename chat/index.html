@@ -4,15 +4,32 @@
 <head>
     <title>NaChat!</title>
     <style src="styles/bootstrap.min.css" /></style>
-    <link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Courier New' rel='stylesheet' type='text/css'>
 
     <script src="scripts/jquery-2.1.1.min.js">
     </script>
     <script src="scripts/pubnub-setup.js" /></script>
     <script src="scripts/pubnub.min.js" /></script>
+    <style>
+    .asdf {
+        background: #00ff00;
+        background-color: #00ff00;
+        -webkit-border-radius: 11;
+        -moz-border-radius: 11;
+        border-radius: 11px;
+        color: #000000;
+        font-size: 20px;
+        padding: 10px 20px 10px 20px;
+        text-decoration: none;
+    }
+    .asdf.qwerty:hover {
+        background: #00ad00;
+        text-decoration: none;
+    }
+    </style>
 </head>
 
-<body style="background-color:black; font-family: 'Orbitron', sans-serif; color:#00FF00">
+<body style="background-color:black; font-family: 'Courier New', sans-serif; color:#00FF00">
     <div class="container">
         <center style="font-size:40px">Welcome to Nachat!
             <div id="msgs" style="font-size:25px" class="jumbotron">
@@ -23,18 +40,17 @@
             <br>
             <br>
             <form id="form" autocomplete="off">
-                <input id="textarea" autofocus size=50 columns=2 style="font-size:30px; color:lime;background-color:#000000;
-      border-width:0" type="text">
-                <input type="submit" value="Send">
-
+                <input style="border: solid #00ff00 2px;font-family:Courier New;padding-top: 0px;padding-right: 20px;padding-bottom: 0px;padding-left: 20px;height:40px; font-size:25px;" class="asdf" id="textarea" autofocus size=70 columns=2 type="text">
+                <button style="border: solid #00ff00 2px;" type="submit" class="asdf qwerty"><b><font style="font-family:Courier New">Send</b> &#10132</font>
+                </button>
             </form>
         </center>
-        <div style="font-size:20px;float:right">
+        <div style="font-size:20px;position: absolute; bottom:3px; right:3px">
             Online:
             <ul id="onlinelist" style="list-style-type:none;">
             </ul>
         </div>
-        <div style="font-size:20px;float:left">
+        <div style="position: absolute; bottom:3px; left:3px">
             <a href="location.html">Check out the location chat!</a>
         </div>
     </div>
@@ -46,7 +62,7 @@
     });
     $("#form").submit(function(event) {
         submitform();
-        event.preventDefault();
+        return false;
     });
 
     function submitform() {
@@ -128,7 +144,8 @@
     } else {
         userchannel = gup('channel');
     }
-    console.log("Connected to channel: " + userchannel) PUBNUB_demo.subscribe({
+    console.log("Connected to channel: " + userchannel);
+    PUBNUB_demo.subscribe({
         channel: userchannel,
         message: function(m) {
             show(m);
