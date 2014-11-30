@@ -42,7 +42,7 @@
 <body style="background-color:black; font-family: 'Courier New', sans-serif; color:#00FF00">
     <div class="container">
         <center style="font-size:40px">Welcome to Nachat!
-            <div id="msgs" style="font-size:25px" class="jumbotron">
+            <div id="msgs" style="font-size:25px;height:301px;overflow:scroll;" class="jumbotron">
                 <br>
             </div>
             <div style="font-size:20px" id="asdf">
@@ -54,7 +54,7 @@
             <br>
             <br>
             <form id="form" autocomplete="off">
-                <input style="border: solid #00ff00 2px;font-family:Courier New;padding-top: 0px;padding-right: 20px;padding-bottom: 0px;padding-left: 20px;height:40px; font-size:25px;" class="asdf" id="textarea" autofocus size=70 columns=2 type="text">
+                <input style="border: solid #00ff00 2px;font-family:Courier New;padding-top: 0px;padding-right: 20px;padding-bottom: 0px;padding-left: 20px;height:40px; font-size:25px;" class="asdf" id="textarea" autofocus size=50 columns=2 type="text">
                 <button style="border: solid #00ff00 2px;" type="submit" class="asdf qwerty"><b><font style="font-family:Courier New">Send</b> &#10132</font>
                 </button>
             </form>
@@ -127,7 +127,9 @@
         } else {
             console.log(m.name + ": " + m.text);
             notifyMe(m.name + ": " + m.text);
-            document.getElementById('msgs').innerHTML += "</br></br><font color='" + m.color + "'>" + m.name + "</font>: " + m.text;
+            var msgs = document.getElementById('msgs');
+            msgs.innerHTML += "</br></br><font color='" + m.color + "'>" + m.name + "</font>: " + m.text;
+            msgs.scrollTop = msgs.scrollHeight;
         }
 
 
