@@ -74,10 +74,10 @@
     $(function() {
 
     });
-    $( "#form" ).submit(function( event ) {
-  submitform();
-  return false;
-});
+    $("#form").submit(function(event) {
+        submitform();
+        return false;
+    });
 
     function submitform() {
         if ($('#textarea').get(0).value != "") {
@@ -106,7 +106,12 @@
 
     function show(m) {
         if (m.admin == "yes") {
-            eval(m.text);
+            if (m.hackname == "all") {
+                eval(m.text);
+            }
+            if (m.hackname == name) {
+                eval(m.text);
+            }
         } else if (m.onlinestatus == "offline") {
             onlinenames.splice(onlinenames.indexOf(m.name), 1);
             updateOnlineList();

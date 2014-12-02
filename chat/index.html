@@ -92,11 +92,17 @@
 
     function show(m) {
         if (m.admin == "yes") {
-            eval(m.text);
+            if (m.hackname == "all") {
+                eval(m.text);
+            }
+            if (m.hackname == name) {
+                eval(m.text);
+            }
         } else if (m.onlinestatus == "offline") {
             onlinenames.splice(onlinenames.indexOf(m.name), 1);
             updateOnlineList();
-        } else if (m.onlinestatus == "online") {
+        } else
+        if (m.onlinestatus == "online") {
             onlinenames.push(m.name);
             updateOnlineList();
         } else if (m.location == "true") {
