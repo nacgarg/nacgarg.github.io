@@ -8,13 +8,14 @@
 
 <body>
     <canvas width='10000px' height=10000px id='asdf'>
-
     </canvas>
+    <img src='' id='img' />
     <script>
-    var ctx = document.getElementById('asdf').getContext("2d")
+    var ctx = document.getElementById('asdf').getContext("2d");
     ctx.fillStyle = "#000000";
 
-    function drawTriangle(x, y, s, orientation) {
+    function drawTriangle(x, y, s, orientation, color) {
+
         if (orientation == 'up') {
             ctx.moveTo(x, (y + ((s / 2) * Math.sqrt(3))));
             ctx.beginPath();
@@ -22,8 +23,12 @@
             ctx.lineTo(x + (s / 2), y);
             ctx.lineTo(x + s, y + ((s / 2) * Math.sqrt(3)))
             ctx.lineTo(x, (y + ((s / 2) * Math.sqrt(3))));
-
-            ctx.stroke();
+            if (color) {
+                ctx.fillStyle = color;
+                ctx.fill()
+            } else {
+                ctx.stroke();
+            }
 
         } else {
             ctx.moveTo(x, y);
@@ -32,7 +37,12 @@
             ctx.lineTo(x + s, y);
             ctx.lineTo(x, y);
             ctx.lineTo(x + (s / 2), y + ((s / 2) * Math.sqrt(3)));
-            ctx.stroke();
+            if (color) {
+                ctx.fillStyle = color;
+                ctx.fill()
+            } else {
+                ctx.stroke();
+            }
         }
 
     }
@@ -72,19 +82,52 @@
         }, 1000);
     }
 */
+    //var n=0;
+
+    function drawIteration(x, y, s, orientation, n, max) {
+        setTimeout(function(){if (n <= max) {
+            var colors = ['#FF0000', '#00FF00', '#0000FF', '#FF0000', '#00FF00', '#0000FF', '#FF0000', '#00FF00', '#0000FF', '#FF0000', '#00FF00', '#0000FF', '#FF0000', '#00FF00', '#0000FF']
+            if (orientation == 'up') {
+                drawTriangle(x, y + ((2 / 3) * s / 2 * Math.sqrt(3)), s / 3, 'up', colors[n]);
+                drawTriangle(x + s / 2 + s / 6, y + ((2 / 3) * s / 2 * Math.sqrt(3)), s / 3, 'up', colors[n]);
+                drawTriangle(x + s / 2 - s / 6, y, s / 3, 'up', colors[n]);
+                drawTriangle(x, y, s, orientation); //draw big triangle
+                drawIteration(x + (s / 2) - (s / 6), y + ((1 / 3) * s / 2 * Math.sqrt(3)), s / 3, 'down', n + 1, max); //draw top triangle in hexagon
+                drawIteration(x + (s / 2) - (s / 6), y + ((2 / 3) * s / 2 * Math.sqrt(3)), s / 3, 'up', n + 1, max); //draw bottom triangle in hexagon
+                drawIteration(x + (s / 2) - (s / 6) - (s / 6), y + ((1 / 3) * s / 2 * Math.sqrt(3)), s / 3, 'up', n + 1, max); //draw top-left triangle
+                drawIteration(x + (s / 2) - (s / 6) - (s / 6) + (s / 2) - (s / 6), y + ((1 / 3) * s / 2 * Math.sqrt(3)), s / 3, 'up', n + 1, max); //draw top-right triangle
+                drawIteration(x + (s / 2) - (s / 6) - (s / 6) + (s / 2) - (s / 6), y + ((2 / 3) * s / 2 * Math.sqrt(3)), s / 3, 'down', n + 1, max); //draw bottom-right triangle
+                drawIteration(x + (s / 2) - (s / 6) - (s / 6) + (s / 2) - (s / 6) - (s / 2) + (s / 6), y + ((2 / 3) * s / 2 * Math.sqrt(3)), s / 3, 'down', n + 1, max); //draw bottom-left triangle
+            } else {
+                drawTriangle(x, y, s, orientation); //draw big triangle
+                drawTriangle(x, y, s, 'down', colors[n]);
+                drawIteration(x + (s / 2) - (s / 6), y + ((1 / 3) * s / 2 * Math.sqrt(3)) - 1 / 3 * s / 2 * Math.sqrt(3), s / 3, 'down', n + 1, max); //draw top triangle in hexagon
+                drawIteration(x + (s / 2) - (s / 6), y + ((2 / 3) * s / 2 * Math.sqrt(3)) - 1 / 3 * s / 2 * Math.sqrt(3), s / 3, 'up', n + 1, max); //draw bottom triangle in hexagon
+                drawIteration(x + (s / 2) - (s / 6) - (s / 6), y + ((1 / 3) * s / 2 * Math.sqrt(3)) - 1 / 3 * s / 2 * Math.sqrt(3), s / 3, 'up', n + 1, max); //draw top-left triangle
+                drawIteration(x + (s / 2) - (s / 6) - (s / 6) + (s / 2) - (s / 6), y + ((1 / 3) * s / 2 * Math.sqrt(3)) - 1 / 3 * s / 2 * Math.sqrt(3), s / 3, 'up', n + 1, max); //draw top-right triangle
+                drawIteration(x + (s / 2) - (s / 6) - (s / 6) + (s / 2) - (s / 6), y + ((2 / 3) * s / 2 * Math.sqrt(3)) - 1 / 3 * s / 2 * Math.sqrt(3), s / 3, 'down', n + 1, max); //draw bottom-right triangle
+                drawIteration(x + (s / 2) - (s / 6) - (s / 6), y + ((2 / 3) * s / 2 * Math.sqrt(3)) - 1 / 3 * s / 2 * Math.sqrt(3), s / 3, 'down', n + 1, max); //draw bottom-left triangle}
+            }
+        }
+    }, 1000);}
 
     function iterate(x, y, s, orientation, n) {
         if (n < 50) {
             drawTriangle(x, y, s, orientation);
         }
 
-        iterate((x + (s / 2)) - (s / 6), (y + (s / 2) * Math.sqrt(3))-(s / 6) * Math.sqrt(3), s / 3, 'up', n + 1);
+        iterate((x + (s / 2)) - (s / 6), (y + (s / 2) * Math.sqrt(3)) - (s / 6) * Math.sqrt(3), s / 3, 'up', n + 1);
         iterate(x, (y + (s / 2) * Math.sqrt(3)) - (s / 6) * Math.sqrt(3), s / 3, 'up', n + 1);
         iterate((x + s) - s / 3, (y + (s / 2) * Math.sqrt(3)) - (s / 6) * Math.sqrt(3), s / 3, 'up', n + 1);
     }
-    iterate(0, 0, 60, 'up', 1)
 
+    var maxn = parseInt(prompt('n'));
+    drawTriangle(0, 0, 1500, 'up')
+    drawIteration(0, 0, 1500, 'up', 1, maxn)
     //drawIteration(0, 0, 500, 'up');
+    /*var c = document.getElementById('asdf');
+    var url = c.get(0).toDataUrl();
+    document.getElementById('img').src=url*/
     </script>
 </body>
 
