@@ -1,0 +1,91 @@
+<html>
+
+<head>
+    <title>
+        sjhdfsjdhfkjshdfjksd
+    </title>
+</head>
+
+<body>
+    <canvas width='10000px' height=10000px id='asdf'>
+
+    </canvas>
+    <script>
+    var ctx = document.getElementById('asdf').getContext("2d")
+    ctx.fillStyle = "#000000";
+
+    function drawTriangle(x, y, s, orientation) {
+        if (orientation == 'up') {
+            ctx.moveTo(x, (y + ((s / 2) * Math.sqrt(3))));
+            ctx.beginPath();
+            ctx.lineTo(x, (y + ((s / 2) * Math.sqrt(3))));
+            ctx.lineTo(x + (s / 2), y);
+            ctx.lineTo(x + s, y + ((s / 2) * Math.sqrt(3)))
+            ctx.lineTo(x, (y + ((s / 2) * Math.sqrt(3))));
+
+            ctx.stroke();
+
+        } else {
+            ctx.moveTo(x, y);
+            ctx.beginPath();
+            ctx.lineTo(x + (s / 2), y + ((s / 2) * Math.sqrt(3)));
+            ctx.lineTo(x + s, y);
+            ctx.lineTo(x, y);
+            ctx.lineTo(x + (s / 2), y + ((s / 2) * Math.sqrt(3)));
+            ctx.stroke();
+        }
+
+    }
+
+
+    function drawTrianglePair(x, y, s) {
+        drawTriangle(x, y, s, 'up');
+        drawTriangle(x, y + ((s / 2) * Math.sqrt(3)), s, 'down');
+
+    }
+    var count = 0;
+
+    /*function drawIteration(x, y, s, orientation) {
+        count++;
+        drawTriangle(x, y, s, orientation);
+        setTimeout(function() {
+            drawIteration(x + (s / 3), y, (s / 3), 'up')
+        }, 1000);
+        setTimeout(function() {
+            drawIteration(x + (s / 3), y - ((s / 2) * Math.sqrt(3)), (s / 3), 'down')
+        }, 1000);
+
+        setTimeout(function() {
+            drawIteration((s / 6), y+(s / 6) * Math.sqrt(3), (s / 3), 'up')
+        }, 1000);
+        setTimeout(function() {
+            drawIteration((s / 6), y+(s / 6) * Math.sqrt(3) + ((s / 2) * Math.sqrt(3)), (s / 3), 'down')
+        }, 1000);
+        ////drawTrianglePair(x+(s/3), y, (s/3));	
+        ////drawTrianglePair((s/6), ((s/6))*Math.sqrt(3), (s/3));
+        //drawTrianglePair((s/2), (s/6)*Math.sqrt(3), (s/3));
+        setTimeout(function() {
+            drawIteration((s / 2), y+(s / 6) * Math.sqrt(3), (s / 3), 'up')
+        }, 1000);
+        setTimeout(function() {
+            drawIteration((s / 2), y+(s / 6) * Math.sqrt(3) - ((s / 2) * Math.sqrt(3)), (s / 3), 'down')
+        }, 1000);
+    }
+*/
+
+    function iterate(x, y, s, orientation, n) {
+        if (n < 50) {
+            drawTriangle(x, y, s, orientation);
+        }
+
+        iterate((x + (s / 2)) - (s / 6), (y + (s / 2) * Math.sqrt(3))-(s / 6) * Math.sqrt(3), s / 3, 'up', n + 1);
+        iterate(x, (y + (s / 2) * Math.sqrt(3)) - (s / 6) * Math.sqrt(3), s / 3, 'up', n + 1);
+        iterate((x + s) - s / 3, (y + (s / 2) * Math.sqrt(3)) - (s / 6) * Math.sqrt(3), s / 3, 'up', n + 1);
+    }
+    iterate(0, 0, 60, 'up', 1)
+
+    //drawIteration(0, 0, 500, 'up');
+    </script>
+</body>
+
+</html>
