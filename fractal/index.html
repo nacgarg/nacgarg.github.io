@@ -7,10 +7,11 @@
 </head>
 
 <body>
-    <canvas width='10000px' height=10000px id='asdf'>
+    <canvas width='1000px' height=1000px id='asdf'>
     </canvas>
     <img src='' id='img' />
     <script>
+
     var ctx = document.getElementById('asdf').getContext("2d");
     ctx.fillStyle = "#000000";
 
@@ -47,13 +48,6 @@
 
     }
 
-
-    function drawTrianglePair(x, y, s) {
-        drawTriangle(x, y, s, 'up');
-        drawTriangle(x, y + ((s / 2) * Math.sqrt(3)), s, 'down');
-
-    }
-    var count = 0;
 
     /*function drawIteration(x, y, s, orientation) {
         count++;
@@ -122,8 +116,8 @@
     }
 
     var maxn = parseInt(prompt('n'));
-    drawTriangle(0, 0, 1500, 'up')
-    drawIteration(0, 0, 1500, 'up', 1, maxn)
+    drawTriangle(0, 0, 1000, 'up')
+    drawIteration(0, 0, 1000, 'up', 1, maxn)
     //drawIteration(0, 0, 500, 'up');
     /*var c = document.getElementById('asdf');
     var url = c.get(0).toDataUrl();
