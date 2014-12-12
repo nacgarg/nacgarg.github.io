@@ -1,19 +1,111 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-     <meta name="viewport">
-    <title>Fractal | Nachi Gargi</title>
-  </head>
-  <body>
-  <div align="center">
-  <a href='http://ngargi.me/fractal/fractal.html'>Animation</a>
-  <br>
-  <a href='http://ngargi.me/fractal/png.png'>Image</a>
-  <br>
-  <a href='https://drive.google.com/file/d/0B8yLU1yFiHm_Z3JDaXliSHFPNmM/view?usp=sharing'>Screencast</a>
-  <br>
-  </div>
 
-  </body>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fractal | Nachi Gargi</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <style>
+    body {
+        opacity: 0;
+    }
+    body {
+        padding-top: 0px;
+    }
+    #top{
+      background-image: url("http://ngargi.me/fractal/png.png");
+        background-size: 2000px 2000px;
+    background-repeat: no-repeat;
+    background-position: center;
+        background-attachment: fixed;
+        padding: 40px;
+    }
+    #fractal1 {
+        padding: 1%;
+
+        
+
+    }
+    #fractal2 {
+        padding: 1%;
+        
+        background-attachment: fixed;
+        
+    }
+    #fractal3 {
+        padding: 1%;
+        
+        background-attachment: fixed;
+       
+    }
+    </style>
+
+</head>
+
+<body>
+    <div class='container'>
+    <div id='top'>
+    <div class='jumbotron'>
+    <h1>Nachi's Fractal - Extra Content!</h1>
+    Click on the links below.
+    </div>
+    </div></div>
+    <div class="row-fluid">
+
+        <section id="fractal1">
+            <div class="span4 well">
+
+                <h2>Image</h2>
+                <p>Check out a 1000px by 1000px pic of my fractal!</p>
+                <p><a class="btn btn-success" href="http://ngargi.me/fractal/png.png">See it &raquo;</a>
+                </p>
+
+            </div>
+        </section>
+        <section id="fractal2">
+            <div class="span4 well">
+
+                <h2>Animation</h2>
+                <p>Check out an HTML5 animated version of my fractal that shows the iterations!</p>
+                <p><a class="btn btn-success" href="http://ngargi.me/fractal/fractal.html">See it &raquo;</a>
+                </p>
+
+            </div>
+        </section>
+        <section id="fractal3">
+            <div class="span4 well">
+
+                <h2>Screencast</h2>
+                <p>Watch me talking about a fractal</p>
+                <p><a class="btn btn-success" href="https://drive.google.com/file/d/0B8yLU1yFiHm_Z3JDaXliSHFPNmM/view?usp=sharing">See it &raquo;</a>
+                </p>
+
+            </div>
+        </section>
+
+    </div>
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $("body").animate({
+            opacity: 1,
+            left: "-=50",
+        }, 1500, function() {
+            console.log("hi");
+            $("body").css("opacity:1");
+            $("body").slideDown(9000, function() {
+                console.log("sdhfksjdh")
+            });
+        });
+
+    });
+    </script>
+</body>
+
 </html>
