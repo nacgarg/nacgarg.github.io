@@ -93,7 +93,7 @@
         document.cookie = "name=" + name;
 
     } else {
-        name = document.cookie.replace("name=", "");
+        name = getCookie("name");
     }
     var PUBNUB_demo = PUBNUB.init({
         publish_key: 'pub-c-80ab65f4-2c8e-4ad4-8f8e-8d27f05c1218',
@@ -482,6 +482,16 @@
 
     //     }
     //   }
+    function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) != -1) return c.substring(name.length,c.length);
+    }
+    return "";
+}
     </script>
     <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
