@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quotidian</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <style>
+    body {
+        opacity: 0;
+    }
+    body {
+        padding-top: 0px;
+        height: 100%;
+    }
+    img {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        z-index: -1;
+        max-width: 100%;
+        max-height: 100%;
+    }
+    .vert {
+        vertical-align: middle;
+        width: 100%;
+        padding-top: 4%;
+        text-align: center;
+    }
+    .jumbotron{
+        position:relative;
+        top:1000px;
+    }
+    </style>
+
+</head>
+
+<body>
+    <img src='quotidian-banner.png' bground="fixed">
+    <div class="container vert">
+     
+
+
+        <div class='jumbotron'>
+            <h1>Quotidian</h1>
+            <p class="lead">Quotes that are a click away.</p>
+            <div>&nbsp;</div>
+            <a href="#" id='link' class="btn btn-default btn-lg">Get the Chrome Extension</a>
+            <p id='fdsa'>
+            </p>
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $("body").animate({
+            opacity: 1,
+            left: "-=50",
+        }, 1500, function() {
+            console.log("hi");
+            $("body").css("opacity:1");
+            
+
+        });
+
+    });
+     $(document).ready(function() {
+        $(".jumbotron").animate({
+            top:"-=700"
+        }, 1500, function() {
+            console.log("hi");
+            $("body").css("opacity:1");
+            
+
+        });
+    });
+    $('a#link').attr({target: '_blank', 
+                    href  : 'chrome-extension.crx'});
+    $('#link').click(function() {
+        $('#fdsa').html('<br>To install, go to chrome://extensions and drag and drop the file.<br>It\'s not on the Chrome Web Store yet, so this is the only way to install it.');
+    });
+    </script>
+    <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-57631534-1', 'auto');
+    ga('require', 'displayfeatures');
+    ga('send', 'pageview');
+    </script>
+</body>
+
+</html>
