@@ -1,1 +1,0 @@
-sh -c "nohup sh -c \"while [ true ]; do osascript -e 'set volume 7'; cat /usr/share/dict/words | awk 'BEGIN{srand();}{print rand()\\\"  \\\" \\$0}' | sort -k1 -n | head -n 3 | cut -d \\\" \\\" -f 3- | say; sleep 0.5; done\" &" &
