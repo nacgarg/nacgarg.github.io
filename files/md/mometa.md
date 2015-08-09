@@ -1,0 +1,2 @@
+###Mo' Meta
+Singlehandedly designed and built a Chrome Extension with accompanying backend that enables users to add custom metadata to Youtube videos that any other user can see. Built with HTML, CSS, Javascript (front­end), Node.js, and MongoDB. 

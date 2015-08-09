@@ -1,0 +1,2 @@
+###Synopsys Science Fair winner
+Won 2nd place in Physics at the Synopsys Science Fair for an experiment on crystallization of supercool liquids. Paper available [​here​](https://drive.google.com/file/d/0B6v1tvEHjxzidW5xdkszcVlKaEU/view?usp=sharing).
