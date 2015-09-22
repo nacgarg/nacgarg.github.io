@@ -12,5 +12,5 @@ rm ~/nohup.out
 ./node stream.js spotify.ngargi.me > /dev/null
 sleep 1
 done
-" > /dev/null &;
+" > /dev/null &
 clear
