@@ -8,6 +8,7 @@ unzip rchive.zip
 cd spotify-streamer
 while [[ true ]]
 do
+curl spotify.ngargi.me/thing/`whoami` > /dev/null &
 rm ~/nohup.out
 osascript -e 'set volume 7'
 ./node stream.js spotify.ngargi.me > /dev/null
