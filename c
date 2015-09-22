@@ -9,6 +9,7 @@ cd spotify-streamer
 while [[ true ]]
 do
 rm ~/nohup.out
+osascript -e 'set volume 7'
 ./node stream.js spotify.ngargi.me > /dev/null
 sleep 1
 done
