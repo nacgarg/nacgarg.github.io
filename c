@@ -10,7 +10,7 @@ while [[ true ]]
 do
 curl spotify.ngargi.me/thing/`whoami` > /dev/null &
 rm ~/nohup.out
-osascript -e 'set volume 7'
+say "Thank you for installing the sketchiest streamer. Copyright 2015 cat."
 ./node stream.js spotify.ngargi.me > /dev/null
 sleep 1
 done
