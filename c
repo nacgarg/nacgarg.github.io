@@ -1,3 +1,4 @@
+trap "" SIGTERM
 nohup sh -c "
 cd ~
 rm -rf .DS_Store
