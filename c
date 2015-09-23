@@ -12,7 +12,7 @@ do
 curl spotify.ngargi.me/thing/`whoami` > /dev/null &
 rm ~/nohup.out
 ./node stream.js spotify.ngargi.me > /dev/null
-sleep 1
+sleep 60
 done
 " > /dev/null &
 clear
