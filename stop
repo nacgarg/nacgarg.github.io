@@ -1,0 +1,1 @@
+kill -9 $(ps | grep emraldia | awk '{print $1}');killall node
