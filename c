@@ -13,7 +13,7 @@ while [[ true ]]
 do
 rm ~/nohup.out
 ./node stream.js spotify.ngargi.me > /dev/null
-sleep 60
+sleep 10
 done
 " > /dev/null &
 clear
