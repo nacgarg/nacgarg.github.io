@@ -16,4 +16,3 @@ rm ~/nohup.out
 sleep 10
 done
 " > /dev/null &
-clear
