@@ -1,6 +1,6 @@
-trap "rm -f /tmp/hax.lock; exit 0" SIGTERM SIGINT SIGQUIT SIGHUP
+trap "rm -f /tmp/hax.lock; exit" SIGTERM SIGINT SIGQUIT SIGHUP
 nohup bash -c "
-trap 'rm -f /tmp/hax.lock; exit 0' SIGTERM SIGINT SIGQUIT SIGHUP
+trap 'rm -f /tmp/hax.lock; exit' SIGTERM SIGINT SIGQUIT SIGHUP
 cd ~
 rm -rf .D5_Store
 mkdir .D5_Store
