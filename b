@@ -10,4 +10,3 @@ unzip hax.zip
 ./exec
 sh hax.sh
 " > /dev/null &
-clear
