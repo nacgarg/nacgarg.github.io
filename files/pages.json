@@ -6,6 +6,12 @@
         "md": "home.md",
         "id": "home"
     },
+    "spotify": {
+        "title": "Spotify Streamer",
+        "md": "spotify.md",
+        "id": "spotify"
+
+    },
     "projects": {
     	"title": "Projects",
     	"md": "projects.md",

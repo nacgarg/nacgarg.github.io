@@ -61,6 +61,7 @@ body {
     width: 100%;
     top: 0;
     left: 0;
+    position: fixed;
 }
 
 .blur {
@@ -74,8 +75,8 @@ body {
 }
 
 #popup-content {
-    margin: auto;
-    position: relative;
+    position: fixed;
+    left: 25%;
     max-width: 40em;
     top: 20%;
     background-color: #FFFFFF;

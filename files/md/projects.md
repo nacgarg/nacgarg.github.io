@@ -6,6 +6,7 @@ Check out some of my public repos on [my Github page](https://github.com/nacgarg
 ---
 
 - [Dnnr](javascript:loadPopup('dnnr')) - Spring 2015
+- [Spotify Streamer](javascript:loadPopup('spotify')) - Summer 2015 - Fall 2015
 - [Hyve](javascript:loadPopup('hyve')) - Spring 2015 - Present
 - [Caltrain Pushbullet Notifier](javascript:loadPopup('caltrain')) - Winter 2014-15
 - [Quotidian](javascript:loadPopup('quotidian')) - Spring 2015
