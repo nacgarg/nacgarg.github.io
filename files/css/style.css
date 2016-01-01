@@ -46,8 +46,6 @@ nav {
 }
 
 body {
-    /*    background-image: url('http://www.gizmobolt.com/wp-content/uploads/2014/11/14-77.jpg');
-*/
     background-attachment: fixed;
     background-color: #01579B;
     z-index: -99999999;
@@ -75,8 +73,8 @@ body {
 }
 
 #popup-content {
-    position: fixed;
-    left: 25%;
+    position: relative;
+    margin: auto;
     max-width: 40em;
     top: 20%;
     background-color: #FFFFFF;
