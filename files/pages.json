@@ -106,5 +106,10 @@
     	"title": "Mo' Meta",
     	"md": "mometa.md",
     	"id": "mometa"
+    },
+    "att": {
+        "title": "AT&T Smart City Hackathon",
+        "md": "att.md",
+        "id": "att"
     }
 }
