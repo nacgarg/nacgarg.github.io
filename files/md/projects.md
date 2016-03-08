@@ -5,7 +5,7 @@ Check out some of my public repos on [my Github page](https://github.com/nacgarg
   
 ---
 
-- [AT&T Smart City hackathon](javascript:loadPopup('att')) - Fall 2015
+- [AT&T Smart City hackathon](javascript:loadPopup('att')) - Fall 2015 (Best Overall App)
 - [Dnnr](javascript:loadPopup('dnnr')) - Spring 2015
 - [Spotify Streamer](javascript:loadPopup('spotify')) - Summer 2015 - Fall 2015
 - [Hyve](javascript:loadPopup('hyve')) - Spring 2015 - Present
