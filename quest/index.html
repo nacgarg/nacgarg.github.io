@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Quest 2016 | AutoMuse</title>
     <style>
     @import url(https://fonts.googleapis.com/css?family=Oxygen:400,700);
@@ -25,7 +26,8 @@
     .title {
         position: absolute;
         top: 50%;
-        left: 35%;
+        left: 40%;
+        width: 60%;
         transform: translate(-50%, -50%);
         font-size: 150px;
         opacity: 0;
@@ -38,18 +40,26 @@
         font-size: 4em;
         color: rgb(245, 124, 0);
         background: white;
-        margin-left: 20px;
-        margin-right: 20px;
+        margin: 15px;
         -webkit-transition: background 2s;
         -webkit-transition: box-shadow 0.5s;
         transition: background 2s;
         transition: box-shadow 0.5s;
     }
     
+    @media only screen and (max-width: 770px) {
+        .title {
+            font-size: 4em;
+        }
+        .btn {
+            font-size: 3em;
+        }
+    }
+    
     .b {
         position: relative;
         top: 40%;
-        width: 40%;
+        width: 490px;
         margin-left: auto;
         margin-right: auto;
     }
