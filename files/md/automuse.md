@@ -1,0 +1,2 @@
+###AutoMuse
+10th grade “Quest” project at The Nueva School. Continued last year’s, but used LSTM neural networks for music composition instead, and created a web interface to stream infinite generated music. Built with Python, Keras, Flask, and Numpy. Repo [here](http://github.com/nacgarg/AutoMuse).
