@@ -5,8 +5,10 @@ Check out some of my public repos on [my Github page](https://github.com/nacgarg
   
 ---
 
-- [AT&T Smart City hackathon (Best Overall App)](javascript:loadPopup('att')) - Fall 2015 
 - [AutoMuse](javascript:loadPopup('automuse')) - Fall 2015 - Present
+- [Music Production](javascript:loadPopup('musprod')) - Ongoing
+- [AT&T Smart City hackathon (Best Overall App)](javascript:loadPopup('att')) - Fall 2015 
+- [Science Game Jam](javascript:loadPopup('gamejam')) - Spring 2016
 - [Dnnr](javascript:loadPopup('dnnr')) - Spring 2015
 - [Spotify Streamer](javascript:loadPopup('spotify')) - Summer 2015 - Fall 2015
 - [Hyve](javascript:loadPopup('hyve')) - Spring 2015 - Present
@@ -16,6 +18,7 @@ Check out some of my public repos on [my Github page](https://github.com/nacgarg
 - [Raspberry Pi GPIO API and Android App](javascript:loadPopup('rpi'))
 - [Mo' Meta](javascript:loadPopup('mometa')) - Sprint 2015
 - [Computer-generated music](javascript:loadPopup('music')) - Fall 2014 - Present
+- [Harker Proco](javascript:loadPopup('harker')) - Spring 2016
 - [Website for Dental Clinic](javascript:loadPopup('dental')) ­- Summer 2015 
 - [Built a PC](javascript:loadPopup('pc')) ­- Summer 2015 
 - [Emraldia](javascript:loadPopup('emraldia')) ­- Spring 2015 - Present

@@ -1,6 +1,6 @@
-{	
-	"Why hello there.": "How do you do?",
-	"Please don't hack my website.": "But enjoy the code!",
+{
+    "Why hello there.": "How do you do?",
+    "Please don't hack my website.": "But enjoy the code!",
     "home": {
         "title": "Home",
         "md": "home.md",
@@ -13,99 +13,99 @@
 
     },
     "projects": {
-    	"title": "Projects",
-    	"md": "projects.md",
+        "title": "Projects",
+        "md": "projects.md",
         "id": "projects"
     },
     "contact": {
-    	"title": "Contact",
-    	"md": "contact.md",
-    	"id": "contact"
+        "title": "Contact",
+        "md": "contact.md",
+        "id": "contact"
     },
     "music": {
-    	"title": "Computer-generated music",
-    	"md": "music.md",
-    	"id": "contact"
+        "title": "Computer-generated music",
+        "md": "music.md",
+        "id": "contact"
     },
     "dental": {
-    	"title": "Website for Dental Clinic",
-    	"md": "dental.md",
-    	"id": "dental"
+        "title": "Website for Dental Clinic",
+        "md": "dental.md",
+        "id": "dental"
     },
     "pc": {
-    	"title": "Built a PC",
-    	"md": "pc.md",
-    	"id": "pc"
+        "title": "Built a PC",
+        "md": "pc.md",
+        "id": "pc"
     },
     "emraldia": {
-    	"title": "Emraldia (Minecraft Server)",
-    	"md": "emraldia.md",
-    	"id": "emraldia"
+        "title": "Emraldia (Minecraft Server)",
+        "md": "emraldia.md",
+        "id": "emraldia"
     },
     "camsctf": {
-    	"title": "CamsCTF",
-    	"md": "camsctf.md",
-    	"id": "camsctf"
+        "title": "CamsCTF",
+        "md": "camsctf.md",
+        "id": "camsctf"
     },
     "proco": {
-    	"title": "Stanford Proco",
-    	"md": "proco.md",
-    	"id": "proco"
+        "title": "Stanford Proco",
+        "md": "proco.md",
+        "id": "proco"
     },
     "dnnr": {
-    	"title": "Dnnr",
-    	"md": "dnnr.md",
-    	"id": "dnnr"
+        "title": "Dnnr",
+        "md": "dnnr.md",
+        "id": "dnnr"
     },
     "hyve": {
-    	"title": "Hyve",
-    	"md": "hyve.md",
-    	"id": "hyve"
+        "title": "Hyve",
+        "md": "hyve.md",
+        "id": "hyve"
     },
     "caltrain": {
-    	"title": "Caltrain Pushbullet Notifier",
-    	"md": "caltrain.md",
-    	"id": "caltrain"
+        "title": "Caltrain Pushbullet Notifier",
+        "md": "caltrain.md",
+        "id": "caltrain"
     },
     "quotidian": {
-    	"title": "Quotidian",
-    	"md": "quotidian.md",
-    	"id": "quotidian"
+        "title": "Quotidian",
+        "md": "quotidian.md",
+        "id": "quotidian"
     },
     "nachat": {
-    	"title": "NaChat",
-    	"md": "nachat.md",
-    	"id": "nachat"
+        "title": "NaChat",
+        "md": "nachat.md",
+        "id": "nachat"
     },
     "rpi": {
-    	"title": "Raspberry Pi GPIO API and Android App",
-    	"md": "rpi.md",
-    	"id": "rpi"
+        "title": "Raspberry Pi GPIO API and Android App",
+        "md": "rpi.md",
+        "id": "rpi"
     },
     "frc": {
-    	"title": "FRC Team",
-    	"md": "frc.md",
-    	"id": "frc"
+        "title": "FRC Team",
+        "md": "frc.md",
+        "id": "frc"
     },
     "picoctf": {
-    	"title": "PicoCTF",
-    	"md": "picoctf.md",
-    	"id": "picoctf"
+        "title": "PicoCTF",
+        "md": "picoctf.md",
+        "id": "picoctf"
     },
     "scifair": {
-    	"title": "Synopsys Science Fair",
-    	"md": "scifair.md",
-    	"id": "scifair"
+        "title": "Synopsys Science Fair",
+        "md": "scifair.md",
+        "id": "scifair"
     },
     "scibowl": {
-    	"title": "Science Bowl",
-    	"md": "scibowl.md",
-    	"id": "scibowl"
+        "title": "Science Bowl",
+        "md": "scibowl.md",
+        "id": "scibowl"
     },
     "mometa": {
-    	"title": "Mo' Meta",
-    	"md": "mometa.md",
-    	"id": "mometa"
+        "title": "Mo' Meta",
+        "md": "mometa.md",
+        "id": "mometa"
     },
     "att": {
         "title": "AT&T Smart City Hackathon",
@@ -115,6 +115,21 @@
     "automuse": {
         "title": "AutoMuse",
         "md": "automuse.md",
-        "id": "att"
+        "id": "automuse"
+    },
+    "harker": {
+        "title": "Harker Proco",
+        "md": "harker.md",
+        "id": "harker"
+    },
+    "musprod": {
+        "title": "Music Production",
+        "md": "musprod.md",
+        "id": "musprod"
+    },
+    "gamejam": {
+        "title": "Science Game Jam",
+        "md": "gamejam.md",
+        "id": "gamejam"
     }
 }
