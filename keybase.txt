@@ -1,0 +1,76 @@
+==================================================================
+https://keybase.io/nachi_g
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://ngargi.me
+  * I am nachi_g (https://keybase.io/nachi_g) on keybase.
+  * I have a public key with fingerprint 153F BDA8 3E13 1E4B 59D6  777C 4DB3 CF78 D078 066D
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "0120ef89d4f05ec8ab425b648472b49380e60cbdc32544f677dd25917560b25950620a",
+            "fingerprint": "153fbda83e131e4b59d6777c4db3cf78d078066d",
+            "host": "keybase.io",
+            "key_id": "4db3cf78d078066d",
+            "kid": "0101a379496d2dc9f66a8892df826b462f9368b08ef3e23b755a301fa3f06e7323730a",
+            "uid": "3b57ed4834c74fe6ed1b221a058d5a19",
+            "username": "nachi_g"
+        },
+        "service": {
+            "hostname": "ngargi.me",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1463095106,
+    "expire_in": 157680000,
+    "prev": "a3444ff7307fba7f064dff3155d9303cbdec637d085c9013480422f17d50308e",
+    "seqno": 7,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.53
+Comment: https://keybase.io/crypto
+
+yMNvAnicbVJ9TFVlHL4IGmIknxvysehszgy4vOe85/MStBXkErTEETrYbuec9z33
+HoV78N7L1wjBCPkokVDED1pGMGdu0oKY4wbGxZSGRNAodJZREjAVjSSIsehcFv/1
+/vP+3t+e53mf38c1f2+Dn9eujuGi74o25HoN9jXkGzKZzS+XEJKGiglTCXEQr144
+B2GH03xQRYSJACQFsMILiFYAg2VelGiKkViapzlKogXIA8wCWUIypBiaVliOQ4hi
+BJJjWCDpAQNYCohELKGoNgu259lVm1OXJRmoSEjkISYhiWmJEZBO5WQaSVBWOB4B
+jgcsi3SiVXN4GLo5SXRgo6rpOf1hXrX3P/g134AUISfQAosoJAsKy4o8L1BI4SlW
+ollKESDLS4DHCsQUlDiGESEgFREqgMUcpCAHV33nr8pBieEwonlIyxytYBYjUqIo
+UgQMjxiRFDxAB7bbxFyso22ibFXNFqI0ltCTBaqMPX31FLIGsIh2i2rU41giz645
+NVnL0dNWpzPP5GE5i/M8sEIsmf8TMEuqDekt1AkF2O5QNRthInWk7FQ9iiTNQiAw
+JGBjCVyUp9qxWfUgGI7lgX483+ACXVKEtD4mRS+OUySR04ulkaJAkmGQAAHUJ4ll
+FnII8IwsABLSPKApSiE5xACod4vwlHTIphEmTrcpWnRJh2qxic58OyZK3X3ZPgYv
+P8OG9es8q2Xw2xiwtnDPJAUYuuuulj5fprwTty91OaU4ZWX4m/Txfvpi59nD09pQ
+VtLUL/Nx2YFXBvLCGhxDFdHLT5HBlt9HTx6Pcc9t88Kv3G7b+GzgE+vbX918YevM
+5pHFmtSM2pS0oHIpqiw5/eyurHc/C787aV6ZfjO4nc0uC+6IOdl6ase57aeMUyth
+va7PL/323p8XpnKuOkLnEleieg79UNtYvjthwFxX7otiIxYqFrqrds4+dydCPP2w
+v3eg4idjaGtV8K25jOwhek/IwOxUoHPfAv1PzJkTIS1RpoSv3TM2i3viSZb7Mu+7
+vfNhzO7okfv10bmtDdPuWYLMwsNdlwbn510lnY/qe2f6R+p2xMcnX69kWkJGd7bU
+BG1tKwzu9vt7/ye/stbRL07Li59Gpr/utz8/yf/DdnnJAI6c+6gZVTaOvNbXc2zK
+90r0WN/ot0t7FrJv126pbjVqbVJOeFTB3pT2TT1pDQdcjfGZ8Ocx7khKwuSx/Pro
+N2pyPg6+XJ15MXT6rXvWxem7rgzxkXfVyPVQ3j3/auOBrvKh4TOJ1evVgIn3m5p5
+720dEUdvXGsvDA9dnCz+oFpLPfGAe3x0/KU7/mFlyV34r8eTDex5Ix0YePM8WPbZ
+S/5R5acdbnpQtmng6bGQ1BnzjciaH5u8Z9PG40Je/L7QZ8LXlhiU67r/ZUxOZPO9
+BPu6ii2uW4MXlipN/wI9Fr5v
+=T8Ws
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/nachi_g
+
+==================================================================
+
