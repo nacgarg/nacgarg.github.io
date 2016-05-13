@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Nachi's Map</title>
+    <link rel="stylesheet" type="text/css" href="https://rawgit.com/leongersen/noUiSlider/master/distribute/nouislider.min.css">
+    <script type="text/javascript" src="https://cdn.rawgit.com/leongersen/noUiSlider/master/distribute/nouislider.min.js"></script>
+</head>
+
+<body>
+    <img id="map">
+    <div id="slider"></div>
+    <div id="year"></div>
+    <script type="text/javascript">
+    var slider = document.getElementById('slider');
+
+    noUiSlider.create(slider, {
+        start: [1798],
+        step: 1,
+        range: {
+            'min': [1798],
+            'max': [1930]
+        }
+    });
+
+    var yearHTML = document.getElementById('year');
+    var map = document.getElementById('map');
+    var years = [1798, 1886, 1914, 1920, 1923]
+    var currentYear = 1798
+    slider.noUiSlider.on('update', function(values, handle) {
+    	values[handle] = parseInt(values[handle])
+    	for (var i = 0; i < years.length; i++) {
+    		if (values[handle] === years[i]) {
+    			console.log(years[i])
+    			currentYear = years[i];
+    			map.src = currentYear + ".png"
+    		}
+    	}
+        yearHTML.innerHTML = values[handle];
+
+    });
+    </script>
+</body>
+
+</html>
