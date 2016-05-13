@@ -5,12 +5,49 @@
     <title>Nachi's Map</title>
     <link rel="stylesheet" type="text/css" href="https://rawgit.com/leongersen/noUiSlider/master/distribute/nouislider.min.css">
     <script type="text/javascript" src="https://cdn.rawgit.com/leongersen/noUiSlider/master/distribute/nouislider.min.js"></script>
+    <style>
+    body {
+        font-family: sans-serif;
+    }
+    
+    #header {
+        margin-left: auto;
+        margin-right: auto;
+        width: 400px;
+        font-size: 30px;
+    }
+    
+    #header2 {
+        margin-left: auto;
+        margin-right: auto;
+        width: 350px;
+        font-size: 20px;
+        color: grey;
+    }
+    
+    #map {
+        margin-left: auto;
+        margin-right: auto;
+        width: 750px;
+    }
+    #info {
+    	margin: 40px;
+    }
+    #info:before {
+    	content: "Info: "
+    }
+    </style>
 </head>
 
 <body>
-    <img id="map">
+    <div id="header">Fall of the Ottoman Empire</div>
+    <br>
+    <div id="header2">an interactive map by Nachi Gargi</div>
+    <br>
+    <img id="map" src="1798.png">
     <div id="slider"></div>
     <div id="year"></div>
+    <div id="info">Move the slider ^</div>
     <script type="text/javascript">
     var slider = document.getElementById('slider');
 
@@ -18,25 +55,36 @@
         start: [1798],
         step: 1,
         range: {
-            'min': [1798],
+            'min': [1790],
             'max': [1930]
         }
     });
 
+    var infostuff = {
+    	1798: "Here you see the Ottoman Empire's boundaries in 1798, before it started to fall. Keep sliding the slider to continue.",
+    	1886: "By 1886, the Ottoman Empire had lost a lot of territory. The area near Tunisia became a French protectorate, and Egypt became independent under Muhammad Ali, then became occupied by the British. Much of the Balkans became independent.",
+    	1914: "By 1914, most of Northern Africa was colonized by Italy, and Albania also became independent. Kuwait became a British protectorate.",
+    	1920: "By 1920, the area near modern-day Israel and Syria was mandated by European coutries. The British claimed Jordan and some of Iraq, while the French claimed Syria and some of Palestine. Notice how all that's left of the Ottoman Empire is pretty much modern-day Turkey.",
+    	1923: "This is Turkey, under the Treaty of Lausanne in 1923. " 
+    }
+
     var yearHTML = document.getElementById('year');
     var map = document.getElementById('map');
+     var info = document.getElementById('info');
     var years = [1798, 1886, 1914, 1920, 1923]
     var currentYear = 1798
     slider.noUiSlider.on('update', function(values, handle) {
-    	values[handle] = parseInt(values[handle])
-    	for (var i = 0; i < years.length; i++) {
-    		if (values[handle] === years[i]) {
-    			console.log(years[i])
-    			currentYear = years[i];
-    			map.src = currentYear + ".png"
-    		}
-    	}
-        yearHTML.innerHTML = values[handle];
+        values[handle] = parseInt(values[handle])
+        for (var i = 0; i <= years.length; i++) {
+            if (values[handle] > years[i]) {
+                console.log(years[i])
+                currentYear = years[i];
+                map.src = currentYear + ".png"
+                info.innerHTML = infostuff[currentYear]
+
+            }
+        }
+        yearHTML.innerHTML = "Year: " + values[handle];
 
     });
     </script>
