@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>APCSP Game</title>
+	<!-- BORROWED CODE FROM MEYERWEB.COM (full citation in reset.css) -->
+	<link rel="stylesheet" type="text/css" href="reset.css">
+	<style type="text/css">
+		body {
+			background-color: #2c3e50; /* obtained from http://flatuicolors.com/ */
+			height: 100%;
+			width: 100%;
+		}
+		canvas#game-canvas {
+			background-color: white;
+		}
+	</style>
+</head>
+<body>
+<canvas id="game-canvas">
+	
+</canvas>
+<script type="text/javascript" src="game.js"></script>
+<script type="text/javascript" src="state.js"></script>
+<script type="text/javascript" src="draw.js"></script>
+<script type="text/javascript">
+	// start the game
+	requestAnimationFrame(tick);
+</script>
+</body>
+</html>
