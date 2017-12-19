@@ -5,7 +5,9 @@ Check out some of my public repos on [my Github page](https://github.com/nacgarg
   
 ---
 
-- [AutoMuse](javascript:loadPopup('automuse')) - Fall 2015 - Present
+- [CCRMA Workshops](javascript:loadPopup('ccrma')) - Summer 2017
+- [Schedulizer](javascript:loadPopup('schedulizer')) - Fall 2017 - Present
+- [AutoMuse](javascript:loadPopup('automuse')) - Fall 2015 - Summer 2016
 - [Music Production](javascript:loadPopup('musprod')) - Ongoing
 - [AT&T Smart City hackathon (Best Overall App)](javascript:loadPopup('att')) - Fall 2015 
 - [Science Game Jam](javascript:loadPopup('gamejam')) - Spring 2016
@@ -16,8 +18,8 @@ Check out some of my public repos on [my Github page](https://github.com/nacgarg
 - [Quotidian](javascript:loadPopup('quotidian')) - Spring 2015
 - [NaChat](javascript:loadPopup('nachat')) - Fall 2015
 - [Raspberry Pi GPIO API and Android App](javascript:loadPopup('rpi'))
-- [Mo' Meta](javascript:loadPopup('mometa')) - Sprint 2015
-- [Computer-generated music](javascript:loadPopup('music')) - Fall 2014 - Present
+- [Mo' Meta](javascript:loadPopup('mometa')) - Spring 2015
+- [Computer-generated music](javascript:loadPopup('music')) - Fall 2014 - Summer 2016
 - [Harker Proco](javascript:loadPopup('harker')) - Spring 2016
 - [Website for Dental Clinic](javascript:loadPopup('dental')) ­- Summer 2015 
 - [Built a PC](javascript:loadPopup('pc')) ­- Summer 2015 

@@ -1,2 +1,2 @@
 ### Music Production
-Learned to use Ableton Live and am creating many new tracks with it. Check out my [splice](https://splice.com/nachi) and [soundcloud](http://soundcloud.com/Kanooli). 
+I produce electronic music with jazz influences and have had several songs published on labels, garnering more than 30,000 views. See more at [kanoo.li](http://kanoo.li/). 

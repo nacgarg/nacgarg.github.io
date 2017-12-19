@@ -1,0 +1,2 @@
+### Schedulizer 
+Created a Telegram bot to notify users of their upcoming classes and easily view their personalized schedule. More than half of my school now uses it and it has been featured in the school newspaper.

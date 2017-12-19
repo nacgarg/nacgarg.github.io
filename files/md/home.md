@@ -1,6 +1,6 @@
 #Welcome
 
-Hello there. You've reached the website of Nachiketa Gargi, a 10th grader at the Nueva School.
+Hello there. You've reached the website of Nachiketa Gargi, a 12th grader at the Nueva School.
 
 Be sure to check out my [projects](javascript:loadPage('projects', 'home')).
 
