@@ -48,8 +48,8 @@ body {
 .work-desc li {
     list-style-type: disc !important;
     list-style-position: outside;
-    font-size: 14pt;
-    line-height: 1.5em;
+    font-size: 12pt;
+    line-height: 1.8em;
     margin: 10px;
 }
 .skillz {
