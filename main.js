@@ -1,7 +1,10 @@
 const MAX_HEIGHT = 2.4;
+const CUBE_SPEED = 0.0015;
+const CAM_MOVE = 1;
+
 let newCube = (x, z) => {
     var geometry = new THREE.BoxGeometry(0.88, 3, 0.88);
-    var material = new THREE.MeshLambertMaterial({ color: 0xdddddd, emissive: 0x030a0b, transparent: true, opacity: 0.8 });
+    var material = new THREE.MeshLambertMaterial({ color: 0xdddddd, emissive: 0x030a0b, transparent: true, opacity: 1 });
     let mesh = new THREE.Mesh(geometry, material);
     mesh.position.x = x;
     mesh.position.z = z;
@@ -23,9 +26,9 @@ let updateCube = (cube) => {
         cube.direction = "up";
     }
     if (cube.direction == "down") {
-        cube.height -= Math.abs((cube.height - cube.heightGoal)) * 0.01;
+        cube.height -= Math.abs((cube.height - cube.heightGoal)) * CUBE_SPEED;
     } else {
-        cube.height += Math.abs((cube.height - cube.heightGoal)) * 0.01;
+        cube.height += Math.abs((cube.height - cube.heightGoal)) * CUBE_SPEED;
     }
     cube.mesh.position.y = cube.height - 4;
 }
@@ -55,7 +58,57 @@ function onWindowResize() {
     window.camera.updateProjectionMatrix();
 }
 
+document.onmousemove = handleMouseMove;
+function handleMouseMove(e) {
+    var x_ = (e.clientX/window.innerWidth - 0.5)*2*CAM_MOVE;
+    var y_ = (e.clientY/window.innerHeight - 0.5)*2*CAM_MOVE;
+    window.camera.position.set(5+x_, 5+y_, 5)
+    camera.lookAt(0, 0, 0); // or the origin
+}
+
+// var possible = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
+var possible = "NachiketGrg"
+function next_rando(el, desired) {
+    // find first index that is incorrect
+    if (el.innerText == desired) {
+        return
+    }
+
+    var index = -1;
+    for (var i = 0; i < desired.length; i++) {
+        if (!el.innerText[i]) {
+            el.innerText+=" "
+        }
+        if (el.innerText[i] != desired[i]) {
+            index = i
+            break;
+        }
+    }
+    if (index == -1) {
+        return;
+    }
+    var chosen = desired[index] == " " ? " " : possible[(possible.indexOf(el.innerText[index]) + 1) % possible.length]
+    var txt = el.innerText;
+    txt = txt.substr(0, index) + chosen + txt.substr(index+1); ;
+    el.innerText = txt;
+    requestAnimationFrame(()=>{next_rando(el, desired)});
+}
+
+function randomize(el) {
+    var actualText = el.innerText;
+    el.innerText = actualText.split("").map(a => { return possible.replace(" ", "")[Math.floor(Math.random()*possible.replace(" ", "").length)]}).join("");
+    setTimeout(()=>{next_rando(el, actualText)}, 1);
+}
+
 document.addEventListener("DOMContentLoaded", function () {
+    // var elems = document.querySelectorAll('.parallax');
+    // var instances = M.Parallax.init(elems);
+
+    var elems = document.querySelectorAll('.tooltipped');
+    var instances = M.Tooltip.init(elems);
+    
+    var rando = document.querySelectorAll('.randomize');
+    rando.forEach(e => randomize(e));
     var scene = new THREE.Scene();
     window.d = 2.1;
     window.aspect = window.innerWidth / window.innerHeight;
@@ -70,64 +123,34 @@ document.addEventListener("DOMContentLoaded", function () {
     var light = new THREE.AmbientLight(0x404040); // soft white light
     scene.add(light);
 
-    var directionalLight = new THREE.DirectionalLight(0xf0fff0, 0.725);
+    var directionalLight = new THREE.DirectionalLight(0xf0fff0, 0.705);
     directionalLight.position.x = 4
     directionalLight.position.y = 10
     directionalLight.position.z = 4
     directionalLight.position.normalize();
     scene.add(directionalLight);
-    pointLight = new THREE.PointLight(0x000f4f, 1);
-    scene.add(pointLight);
+    var blue = new THREE.PointLight(0x000f4f, 1);
+    blue.position.x = 10
+    scene.add(blue);
+    orange = new THREE.PointLight(0x0fff00, 1);
+    orange.position.x = 30
+    orange.position.y = -10
+    orange.position.z = -5
+    scene.add(orange);
 
 
     window.grid = createGrid(20, 20);
     grid.cubes.forEach((c) => scene.add(c.mesh));
 
-    camera.position.z = 5;
+    // camera.position.z = 5;
 
     var animate = function () {
         requestAnimationFrame(animate);
 
         grid.cubes.forEach(updateCube);
-
         renderer.render(scene, camera);
     };
 
     animate();
-
-    var timeline = anime.timeline();
-    timeline
-        .add({
-            targets: ".fade-in",
-            opacity: 0,
-            duration: 1000,
-            easing: "easeOutExpo",
-            delay: 1000
-        })
-        .add({
-            targets: '#splash',
-            marginLeft: "10%",
-            width: 370,
-            // delay: function (el, i) { return 1000 + (i * 100); },
-            duration: 1200,
-            height: 100
-        })
-        .add({
-            targets: ".big",
-            top: 0,
-            scale: 0.5,
-            translateX: '-30%',
-            duration: 1000,
-            padding: 0,
-            offset: '-=1200'
-        })
-        .add({
-            targets: "#content",
-            translateY: 0,
-            opacity: 1,
-            duration: 1000,
-            delay: 1000,
-            offset: '-=600'
-        })
 
 });
