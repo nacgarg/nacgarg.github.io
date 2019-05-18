@@ -52,6 +52,12 @@ body {
     line-height: 1.8em;
     margin: 10px;
 }
+.edu-desc li {
+    list-style-position: outside;
+    font-size: 12pt;
+    /* line-height: 1.8em; */
+    /* margin: 10px; */
+}
 .skillz {
     font-size: 14pt;
 }
@@ -63,6 +69,7 @@ body {
   .btnssdf {
       /* position: fixed; */
       z-index: 99999999;
+      float: right;
   }
   .btnssdf a {
     margin-left: 20px;
@@ -95,14 +102,21 @@ body {
 }
 
 .school {
-    width: 50pt;
+    width: 30pt;
     cursor: pointer;
+}
+
+.school-row {
+    margin-bottom: 1px;
 }
 .left-border {
     border-left: 10px solid #7AFEB9;
     padding-left: 30px;
 }
 
+.card-content {
+    padding: 8px !important;
+}
 .container {
     width: 90%;
     max-width: 1500px;
@@ -163,4 +177,16 @@ body {
 
 .edu {
     font-size: 14pt;
+}
+
+.down-arrow {
+    /* position: absolute; */
+    bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    margin: auto;
+    width: 50%;
+    top: 20px;
+    position: relative;
+    /* z-index: 99999; */
 }

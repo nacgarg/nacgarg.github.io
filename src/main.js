@@ -106,6 +106,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var elems = document.querySelectorAll('.tooltipped');
     var instances = M.Tooltip.init(elems);
+
+    var elems = document.querySelectorAll('.scrollspy');
+    var instances = M.ScrollSpy.init(elems, {
+        throttle: 50,
+        scrollOffset: 0
+    });
     
     var rando = document.querySelectorAll('.randomize');
     rando.forEach(e => randomize(e));
